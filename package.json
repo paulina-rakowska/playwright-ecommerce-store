@@ -1,0 +1,22 @@
+{
+  "name": "chat-gpt-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber-js --import tsx",
+    "type-check": "tsc --noEmit",
+    "test:typed": "npm run type-check && npm run test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@cucumber/cucumber": "^12.2.0",
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^24.10.1",
+    "cucumber-html-reporter": "^7.2.0",
+    "dotenv": "^17.2.3",
+    "tsx": "^4.20.6"
+  }
+}
