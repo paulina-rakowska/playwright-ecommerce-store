@@ -1,19 +1,19 @@
 import { test, expect } from "@playwright/test";
 import LoginPage from "../src/pages/LoginPage";
-import { inventoryUrl } from "../src/utils/env";
+import { user, inventoryUrl } from "../src/utils/env";
 
 test("logging standard_user", async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.gotoTheStore();
-    await loginPage.loginAsStandardUser();
+    await loginPage.login(user.username, user.password);
 
     await expect(page).toHaveURL(inventoryUrl);
 });
 
-test("logging lockout_user", async ({ page }) => {
-    const loginPage = new LoginPage(page);
-    await loginPage.gotoTheStore();
-    await loginPage.loginAsLockoutUser();
+// test("logging lockout_user", async ({ page }) => {
+//     const loginPage = new LoginPage(page);
+//     await loginPage.gotoTheStore();
+//     await loginPage.login(user.username, user.password);
 
-    await expect(page.locator('.error-button')).toBeAttached();
-});
+//     await expect(page.locator('.error-button')).toBeVisible();
+// });

@@ -1,8 +1,8 @@
 import { World, IWorldOptions, setWorldConstructor } from '@cucumber/cucumber';
-import { Browser, BrowserContext, Page, chromium } from '@playwright/test';
+import { Browser, BrowserContext, Page} from '@playwright/test';
 
 export class CustomWorld extends World {
-    browser?: Browser;
+    // browser?: Browser;   browser is defined in hooks.ts
     context?: BrowserContext;
     page?: Page;
 
@@ -11,4 +11,7 @@ export class CustomWorld extends World {
     }
 }
 
-setWorldConstructor(World);
+setWorldConstructor(CustomWorld);
+
+// handy type alias for steps
+export type CucumberWorld = CustomWorld;

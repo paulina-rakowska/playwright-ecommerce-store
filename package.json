@@ -4,9 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cucumber-js --import tsx",
+    "test": "tsx node_modules/@cucumber/cucumber/bin/cucumber-js --config cucumber.cjs",
     "type-check": "tsc --noEmit",
-    "test:typed": "npm run type-check && npm run test"
+    "test:typed": "npm run type-check && npm run test",
+    "report:cucumber": "node generate-cucumber-report.cjs",
+    "test:cucumber": "npm run test",
+    "test:cucumber:html": "npm run test && npm run report:cucumber"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +20,7 @@
     "@types/node": "^24.10.1",
     "cucumber-html-reporter": "^7.2.0",
     "dotenv": "^17.2.3",
+    "ts-node": "^10.9.2",
     "tsx": "^4.20.6"
   }
 }

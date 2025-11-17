@@ -1,0 +1,76 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "login-functionality;login-as-a-standard-user",
+        "keyword": "Scenario",
+        "line": 4,
+        "name": "Login as a standard user",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 1277794700
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 5,
+            "name": "I log in as a standard user",
+            "match": {
+              "location": "src\\steps\\login.steps.ts:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2170376699
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 6,
+            "name": "I should be redirected to the inventory page",
+            "match": {
+              "location": "src\\steps\\login.steps.ts:14"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6560199
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 10863099
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@no-auth",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "login-functionality",
+    "line": 2,
+    "keyword": "Feature",
+    "name": "Login functionality",
+    "tags": [
+      {
+        "name": "@no-auth",
+        "line": 1
+      }
+    ],
+    "uri": "src\\features\\login.feature"
+  }
+]
