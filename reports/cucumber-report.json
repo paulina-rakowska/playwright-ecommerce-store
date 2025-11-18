@@ -4,6 +4,80 @@
     "elements": [
       {
         "description": "",
+        "id": "checking-products-functionality;check-if-products-are-available-on-the-inventory-page",
+        "keyword": "Scenario",
+        "line": 4,
+        "name": "Check if products are available on the inventory page",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 1353694200
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "I am on the inventory page",
+            "match": {
+              "location": "src\\steps\\check_products.ts:8"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 469378299
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 6,
+            "name": "I should see at least one product",
+            "match": {
+              "location": "src\\steps\\check_products.ts:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 28899800
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 11714800
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@checkProducts",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "checking-products-functionality",
+    "line": 2,
+    "keyword": "Feature",
+    "name": "Checking products functionality",
+    "tags": [
+      {
+        "name": "@checkProducts",
+        "line": 1
+      }
+    ],
+    "uri": "src\\features\\check_products.feature"
+  },
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
         "id": "login-functionality;login-as-a-standard-user",
         "keyword": "Scenario",
         "line": 4,
@@ -14,7 +88,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 1277794700
+              "duration": 101203300
             }
           },
           {
@@ -27,7 +101,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 2170376699
+              "duration": 614520499
             }
           },
           {
@@ -40,7 +114,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 6560199
+              "duration": 2986700
             }
           },
           {
@@ -48,7 +122,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 10863099
+              "duration": 5039899
             }
           }
         ],

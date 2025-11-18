@@ -233,3 +233,6 @@ Cucumber-first → implement Playwright in steps ✅ (true BDD)
 Playwright-first → wrap in Cucumber later ❌ (less ideal if doing BDD)
 
 For your project: since the job description emphasizes Cucumber + BDD, you should start with feature files.
+
+Run specific feature:
+npm test src/features/check_products.feature

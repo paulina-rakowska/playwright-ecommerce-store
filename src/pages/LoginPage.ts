@@ -1,16 +1,17 @@
-import { expect, type Locator, type Page } from "@playwright/test";
+import { type Locator, type Page } from "@playwright/test";
 import { baseUrl, inventoryUrl } from '../utils/env';
+import BasicPage from "./BasicPage";
 
-export default class LoginPage {
+export default class LoginPage extends BasicPage {
     usernameElement!: Locator;
     passwordElement!: Locator;
     loginButton!: Locator;
 
-    constructor(private page: Page) {
-        this.page = page;
+    constructor(page: Page) {
+        super(page);
     }
     async gotoTheStore() {
-        await this.page.goto(baseUrl);
+        super.gotoTheStore(baseUrl);
         this.usernameElement = this.page.getByPlaceholder("Username");
         this.passwordElement = this.page.getByPlaceholder("Password");
         this.loginButton = this.page.getByRole("button", { name: "Login" });
