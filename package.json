@@ -9,7 +9,8 @@
     "test:typed": "npm run type-check && npm run test",
     "report:cucumber": "node generate-cucumber-report.cjs",
     "test:cucumber": "npm run test",
-    "test:cucumber:html": "npm run test && npm run report:cucumber"
+    "test:cucumber:html": "npm run test && npm run report:cucumber",
+    "cuke": "tsx node_modules/@cucumber/cucumber/bin/cucumber-js --config cucumber.cjs"
   },
   "keywords": [],
   "author": "",

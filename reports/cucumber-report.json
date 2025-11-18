@@ -4,83 +4,9 @@
     "elements": [
       {
         "description": "",
-        "id": "checking-products-functionality;check-if-products-are-available-on-the-inventory-page",
-        "keyword": "Scenario",
-        "line": 4,
-        "name": "Check if products are available on the inventory page",
-        "steps": [
-          {
-            "keyword": "Before",
-            "hidden": true,
-            "result": {
-              "status": "passed",
-              "duration": 1353694200
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Given ",
-            "line": 5,
-            "name": "I am on the inventory page",
-            "match": {
-              "location": "src\\steps\\check_products.ts:8"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 469378299
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Then ",
-            "line": 6,
-            "name": "I should see at least one product",
-            "match": {
-              "location": "src\\steps\\check_products.ts:16"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 28899800
-            }
-          },
-          {
-            "keyword": "After",
-            "hidden": true,
-            "result": {
-              "status": "passed",
-              "duration": 11714800
-            }
-          }
-        ],
-        "tags": [
-          {
-            "name": "@checkProducts",
-            "line": 1
-          }
-        ],
-        "type": "scenario"
-      }
-    ],
-    "id": "checking-products-functionality",
-    "line": 2,
-    "keyword": "Feature",
-    "name": "Checking products functionality",
-    "tags": [
-      {
-        "name": "@checkProducts",
-        "line": 1
-      }
-    ],
-    "uri": "src\\features\\check_products.feature"
-  },
-  {
-    "description": "",
-    "elements": [
-      {
-        "description": "",
         "id": "login-functionality;login-as-a-standard-user",
         "keyword": "Scenario",
-        "line": 4,
+        "line": 5,
         "name": "Login as a standard user",
         "steps": [
           {
@@ -88,33 +14,33 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 101203300
+              "duration": 1290722700
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "line": 5,
+            "line": 6,
             "name": "I log in as a standard user",
             "match": {
               "location": "src\\steps\\login.steps.ts:7"
             },
             "result": {
               "status": "passed",
-              "duration": 614520499
+              "duration": 465289299
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "line": 6,
+            "line": 7,
             "name": "I should be redirected to the inventory page",
             "match": {
-              "location": "src\\steps\\login.steps.ts:14"
+              "location": "src\\steps\\login.steps.ts:15"
             },
             "result": {
               "status": "passed",
-              "duration": 2986700
+              "duration": 5832100
             }
           },
           {
@@ -122,13 +48,13 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 5039899
+              "duration": 11684699
             }
           }
         ],
         "tags": [
           {
-            "name": "@no-auth",
+            "name": "@notloggedin",
             "line": 1
           }
         ],
@@ -136,15 +62,89 @@
       }
     ],
     "id": "login-functionality",
-    "line": 2,
+    "line": 3,
     "keyword": "Feature",
     "name": "Login functionality",
     "tags": [
       {
-        "name": "@no-auth",
+        "name": "@notloggedin",
         "line": 1
       }
     ],
-    "uri": "src\\features\\login.feature"
+    "uri": "src\\features\\01_login.feature"
+  },
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "checking-products-functionality;check-if-products-are-available-on-the-inventory-page",
+        "keyword": "Scenario",
+        "line": 5,
+        "name": "Check if products are available on the inventory page",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 106587999
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "I am on the inventory page",
+            "match": {
+              "location": "src\\steps\\check_products.ts:8"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 395508799
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 7,
+            "name": "I should see at least one product",
+            "match": {
+              "location": "src\\steps\\check_products.ts:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 21648299
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 7677699
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@loggedin",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "checking-products-functionality",
+    "line": 3,
+    "keyword": "Feature",
+    "name": "Checking products functionality",
+    "tags": [
+      {
+        "name": "@loggedin",
+        "line": 1
+      }
+    ],
+    "uri": "src\\features\\02_check_products.feature"
   }
 ]

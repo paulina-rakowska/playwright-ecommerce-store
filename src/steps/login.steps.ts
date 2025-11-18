@@ -9,6 +9,7 @@ When("I log in as a standard user", async function (this: CucumberWorld) {
 
     await loginPage.gotoTheStore();
     await loginPage.login(user.username, user.password);
+    await this.context?.storageState({ path: user.storageFile });
 });
 
 Then("I should be redirected to the inventory page", async function (this: CucumberWorld) {

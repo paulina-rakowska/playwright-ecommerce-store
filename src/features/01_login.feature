@@ -1,4 +1,5 @@
-@no-auth
+@notloggedin
+
 Feature: Login functionality
 
   Scenario: Login as a standard user

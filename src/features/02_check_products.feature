@@ -1,4 +1,5 @@
-@checkProducts
+@loggedin
+
 Feature: Checking products functionality
 
     Scenario: Check if products are available on the inventory page

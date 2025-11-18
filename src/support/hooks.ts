@@ -10,10 +10,10 @@ let browser: Browser;
 
 
 async function createAuthenticatedContext(world: CustomWorld) {
-      const storagePath = path.resolve(user.storageFile);
-  console.log('Using storageState file:', storagePath);
+    const storagePath = path.resolve(user.storageFile);
+    console.log('Using storageState file:', storagePath);
     const hasStorage = fs.existsSync(user.storageFile);
-      console.log('hasStorage:', hasStorage);
+    console.log('hasStorage:', hasStorage);
     world.context = await browser!.newContext(hasStorage ? { storageState: user.storageFile } : undefined);
     world.page = await world.context.newPage();
 
@@ -28,14 +28,43 @@ async function createAuthenticatedContext(world: CustomWorld) {
         console.log('Storage found, skipping login');
     }
 }
+async function createLoginContext(world: CustomWorld) {
+    world.context = await browser!.newContext();
+    world.page = await world.context.newPage();
+}
 
 BeforeAll(async function () {
     browser = await chromium.launch({ headless: true });
 });
-
-Before(async function (this: CustomWorld) {
+Before(async function (scenario) {
+  // Get all tags from the scenario
+  const tags = scenario.pickle.tags.map(tag => tag.name);
+  
+  // Check if a specific tag exists
+  if (tags.includes('@notloggedin')) {
+    console.log('Before hook as NOT LOGGED in user');
+    await createLoginContext(this);
+  }
+  
+  if (tags.includes('@loggedin')) {
+    console.log('Before hook as LOGGED in user');
     await createAuthenticatedContext(this);
+    // Setup API-specific configuration
+  }
+  
+  
+  console.log('All tags:', tags);
 })
+
+// Before({ tags: "@loggedin" }, async function (this: CustomWorld) {
+//     console.log('Before hook as logged in user');
+//     await createAuthenticatedContext(this);
+// })
+
+// Before({ tags: "@notloggedin" }, async function (this: CustomWorld) {
+//     console.log('Before hook as not logged in user');
+//     await createLoginContext(this);
+// })
 
 After(async function (this: CustomWorld) {
     await this.page?.close();
