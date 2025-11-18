@@ -240,4 +240,6 @@ Run specific feature:
 npm run test -- src/features/login.feature
 npm run test -- src/features/check_products.feature
 
+ npm run test:features 
+
 npm run test -- "src/features/**/*.feature"
