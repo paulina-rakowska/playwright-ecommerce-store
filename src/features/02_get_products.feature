@@ -1,6 +1,6 @@
 @loggedin
 
-Feature: Checking products functionality
+Feature: Getting products count functionality
 
     Scenario: Check if products are available on the inventory page
     Given I am on the inventory page

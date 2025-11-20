@@ -14,7 +14,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 1285364099
+              "duration": 1276762999
             }
           },
           {
@@ -27,7 +27,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 428616399
+              "duration": 3142462300
             }
           },
           {
@@ -40,7 +40,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 12135400
+              "duration": 7638899
             }
           },
           {
@@ -48,7 +48,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 12126200
+              "duration": 14936700
             }
           }
         ],
@@ -78,7 +78,7 @@
     "elements": [
       {
         "description": "",
-        "id": "checking-products-functionality;check-if-products-are-available-on-the-inventory-page",
+        "id": "getting-products-count-functionality;check-if-products-are-available-on-the-inventory-page",
         "keyword": "Scenario",
         "line": 5,
         "name": "Check if products are available on the inventory page",
@@ -88,7 +88,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 105823499
+              "duration": 116568800
             }
           },
           {
@@ -97,11 +97,11 @@
             "line": 6,
             "name": "I am on the inventory page",
             "match": {
-              "location": "src\\steps\\check_products.ts:8"
+              "location": "src\\steps\\get_products.ts:8"
             },
             "result": {
               "status": "passed",
-              "duration": 403810500
+              "duration": 398922999
             }
           },
           {
@@ -110,11 +110,11 @@
             "line": 7,
             "name": "I should see at least one product",
             "match": {
-              "location": "src\\steps\\check_products.ts:16"
+              "location": "src\\steps\\get_products.ts:16"
             },
             "result": {
               "status": "passed",
-              "duration": 21927599
+              "duration": 20867599
             }
           },
           {
@@ -122,7 +122,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 6314200
+              "duration": 8234800
             }
           }
         ],
@@ -135,16 +135,16 @@
         "type": "scenario"
       }
     ],
-    "id": "checking-products-functionality",
+    "id": "getting-products-count-functionality",
     "line": 3,
     "keyword": "Feature",
-    "name": "Checking products functionality",
+    "name": "Getting products count functionality",
     "tags": [
       {
         "name": "@loggedin",
         "line": 1
       }
     ],
-    "uri": "src\\features\\02_check_products.feature"
+    "uri": "src\\features\\02_get_products.feature"
   }
 ]

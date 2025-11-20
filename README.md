@@ -237,9 +237,8 @@ For your project: since the job description emphasizes Cucumber + BDD, you shoul
 Run specific feature:
 
 
-npm run test -- src/features/login.feature
-npm run test -- src/features/check_products.feature
+npm run test -- src/features/01_login.feature
+npm run test -- src/features/02_get_products.feature
 
- npm run test:features 
+npm run test:features 
 
-npm run test -- "src/features/**/*.feature"

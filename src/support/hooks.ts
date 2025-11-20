@@ -1,7 +1,7 @@
 import { BeforeAll, AfterAll, Before, After } from '@cucumber/cucumber';
 import { chromium, Browser } from '@playwright/test';
 import { CustomWorld } from './world';
-import { user } from "../utils/env";
+import { baseUrl, user } from "../utils/env";
 import LoginPage from "../pages/LoginPage";
 import path from 'path';
 import fs from 'fs';
@@ -20,7 +20,7 @@ async function createAuthenticatedContext(world: CustomWorld) {
     if (!hasStorage) {
         console.log('No storage found, logging in...');
         const loginPage = new LoginPage(world.page!);
-        await loginPage.gotoTheStore();
+        await loginPage.gotoTheStore(baseUrl);
         await loginPage.login(user.username, user.password);
         await world.context?.storageState({ path: user.storageFile });
     }

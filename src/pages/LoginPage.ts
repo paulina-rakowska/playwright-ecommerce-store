@@ -10,9 +10,9 @@ export default class LoginPage extends BasicPage {
     constructor(page: Page) {
         super(page);
     }
-    async gotoTheStore() {
-        
-        await super.gotoTheStore(baseUrl);
+    async gotoTheStore(url: string) {
+            console.log("Login go to the store");
+        await super.gotoTheStore(url);
         this.usernameElement = this.page.getByPlaceholder("Username");
         this.passwordElement = this.page.getByPlaceholder("Password");
         this.loginButton = this.page.getByRole("button", { name: "Login" });

@@ -9,8 +9,10 @@ export default class BasicPage {
         this.page = page;
     }
 
-    async gotoTheStore(startingUrl: string) {
-        await this.page.goto(startingUrl);
+    async gotoTheStore(url: string) {
+        console.log("Basic go to the store");
+        await this.page.goto(url);
+        await this.page.waitForURL(url);
         this.startingUrl = this.page.url();
     }   
     async getUserCookie(cookieName: string): Promise<string> {
