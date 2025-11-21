@@ -11,13 +11,9 @@ export default class BasicPage {
 
     async gotoTheStore(url: string) {
         console.log("Basic go to the store");
+        console.log(url);
         await this.page.goto(url);
         await this.page.waitForURL(url);
         this.startingUrl = this.page.url();
     }   
-    async getUserCookie(cookieName: string): Promise<string> {
-        const cookies = await this.page.context().cookies();
-        const sessionCookie = cookies.find((c) => c.name === cookieName);
-        return sessionCookie?.value || '';
-    }
 }

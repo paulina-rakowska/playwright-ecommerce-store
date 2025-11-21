@@ -9,20 +9,28 @@ export default class ProductsPage extends BasicPage {
     constructor(page: Page) {
         super(page);    
     }
-    async loadSessionUserName(): Promise<void> {
-        this.sessionUserName = await this.getUserCookie("session-username");
+    async getProducts(): Promise<void> {
+        const products = this.page.locator(".inventory_item");
+        this.productElements = products;
+    }
+    async getProductByIndex(index: number): Promise<Locator> {
+        const product = index === 1 ? this.page.locator(".inventory_item").first() : this.page.locator(".inventory_item"); // to do index != 1
+        return product;
+    }
+    async getProductButton(product: Locator): Promise<Locator> {
+        const addToCartButton = product?.locator("button");
+        return addToCartButton;
     }
     async getProductsCount(): Promise<number> {
-        const products = this.page.locator(".inventory_item");
-        const count = await products.count();
-        this.productElements = products;
+        await this.getProducts();
+        const count = await this.productElements!.count();
         this.productCount = count;
         return count;
     }
-    async addFirstProductToCart(): Promise<void> {
-        const firstProduct = this.productElements?.first();
-        const addToCartButton = firstProduct?.locator("button");
+    async addFirstProductToCart(product: Locator): Promise<Locator> {
+        const addToCartButton = product.locator("button");
         await addToCartButton?.click();
+        return addToCartButton;
     }
     async addProductByName(productName: string): Promise<void> {
         console.log(this.productElements);
