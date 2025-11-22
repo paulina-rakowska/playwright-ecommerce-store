@@ -14,7 +14,7 @@ export default class ProductsPage extends BasicPage {
         this.productElements = products;
     }
     async getProductByIndex(index: number): Promise<Locator> {
-        const product = index === 1 ? this.page.locator(".inventory_item").first() : this.page.locator(".inventory_item"); // to do index != 1
+        const product = index === 1 ? this.page.locator(".inventory_item").first() : this.page.locator(".inventory_item").nth(index);
         return product;
     }
     async getProductsCount(): Promise<number> {
@@ -23,15 +23,10 @@ export default class ProductsPage extends BasicPage {
         this.productCount = count;
         return count;
     }
-    async addFirstProductToCart(product: Locator): Promise<Locator> {
+    async addProductToCart(product: Locator): Promise<Locator> {
         const addToCartButton = product.locator("button");
         await addToCartButton?.click();
         return addToCartButton;
-    }
-    async addRandomProductToCart(): Promise<void> {
-        const randomProduct = this.productElements?.nth(Math.floor(Math.random() * this.productCount!));
-        const addToCartButton = randomProduct?.locator("button");
-        await addToCartButton?.click();
     }
     async addAllProductsToCart(): Promise<void> {
         console.log(this.productElements);
