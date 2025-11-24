@@ -9,7 +9,7 @@ import { mockProductData } from "../../mocks/products";
 let testedUrl, testedPage: ProductsPage | ProductDetailsPage, selectedProduct: Locator, selectedProductButton: Locator,
 initialCartCount: number, productData: void | undefined;
 
-//ProductPage
+//ProductsPage
 Given("I am on the products page", async function (this: CucumberWorld) {
     testedPage = new ProductsPage(this.page!);
     testedUrl = inventoryUrl;
@@ -49,15 +49,16 @@ Given('Add to cart button is visible', async function () {
    await expect(selectedProductButton).toBeVisible();
 });
 
-
+//ProductsPage
 When("I click first product button Add to cart", async function (this: CucumberWorld) {
     selectedProductButton = await testedPage.addProductToCart(selectedProduct);
 });
-
+//ProductDetailsPage
 When('I click product button Add to cart', async function () {
     await selectedProductButton.click();
 });
 
+//ProductsPage + ProductDetailsPage
 Then('text on the button should change to Remove', async function (this: CucumberWorld) {
     await expect(selectedProductButton).toHaveText("Remove");
 });
@@ -67,7 +68,7 @@ Then("cart badge should be incremented by one", async function (this: CucumberWo
     if (testedPage) {
         newCount = await testedPage.getCartBadgeCount();
     } else {
-        throw new Error("Neither testedPage nor testedPage is initialized. Make sure you navigated to a page first.");
+        throw new Error("testedPage is not initialized. Make sure you navigated to a page first.");
     }
     expect(newCount).toBe(initialCartCount + 1);
 });

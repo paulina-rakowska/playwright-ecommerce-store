@@ -1,5 +1,5 @@
 import { test, expect, Locator } from "@playwright/test";
-import { inventoryUrl } from "../src/utils/env";
+import { inventoryUrl, productDetailsUrl } from "../src/utils/env";
 import ProductsPage from "../src/pages/ProductsPage";
 import ProductDetailsPage from "../src/pages/ProductDetailsPage";
 
@@ -12,14 +12,7 @@ test.describe("add to cart scenarios", () => {
             testedPage = new ProductsPage(page);
             await testedPage.gotoTheStore(inventoryUrl);
             initialCartCount = await testedPage.getCartBadgeCount();
-            console.log("initialCartCount");
-            console.log(initialCartCount);
-            if (initialCartCount !== 0){
-                await page.evaluate(() =>
-                    localStorage.removeItem("cart-contents")
-                );
-                await page.reload();
-            }
+            await testedPage.clearCart(); // Clear cart first
         });
         test("add first product to cart", async ({
             page
@@ -99,19 +92,32 @@ test.describe("add to cart scenarios", () => {
 
 
     test.describe("add to cart on product details page", () => {
-        let productDetailsPage: ProductDetailsPage;
-        let cartBadgeElement: Locator;
-        let cartBadgeCount: number;
+        let testedPage: ProductDetailsPage;
+        let initialCartCount: number;
+        let selectedProductButton: Locator;
 
         test.beforeEach(async ({ page }) => {
-            // productDetailsPage = new ProductDetailsPage(page);
-            // await productDetailsPage.goto(productDetailsUrl);
-            // cartBadgeElement = page.locator('[data-test="shopping-cart-link"]');
-            // cartBadgeCount = parseInt((await cartBadgeElement.textContent()) || '0');
+            testedPage = new ProductDetailsPage(page);
+            await testedPage.gotoTheStore(productDetailsUrl+"0");
+            initialCartCount = await testedPage.getCartBadgeCount();
+            await testedPage.clearCart(); // Clear cart first
         });
 
         test("add product from details page", async ({ page }) => {
-            // Your test logic here
+            await test.step(`Add to cart button is visible`, async () => {
+                selectedProductButton = testedPage.getButton();
+                console.log("selectedProductButton");
+                console.log(selectedProductButton);
+                await expect(selectedProductButton).toBeVisible();
+            });
+            await test.step(`I click product button Add to cart`, async () => {
+                await selectedProductButton.click();
+                await expect(selectedProductButton).toHaveText("Remove");
+            });
+            await test.step(`Check if cart badge count is incremented`, async () => {
+                let newCount = await testedPage.getCartBadgeCount();
+                expect(newCount).toBe(initialCartCount + 1);
+            });
         });
     });
 });
