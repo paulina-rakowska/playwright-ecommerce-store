@@ -4,7 +4,6 @@ import { CucumberWorld } from "../support/world";
 import ProductsPage from "../pages/ProductsPage";
 import { inventoryUrl } from "../utils/env";
 
-
 Given("I am on the inventory page", async function (this: CucumberWorld) {  
     const productPage = new ProductsPage(this.page!);
     await productPage.gotoTheStore(inventoryUrl);

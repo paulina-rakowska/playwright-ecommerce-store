@@ -1,75 +1,104 @@
-import { test, expect, Locator } from '@playwright/test';
-import { inventoryUrl } from '../src/utils/env';
-import ProductsPage from '../src/pages/ProductsPage';
-import ProductDetailsPage from '../src/pages/ProductDetailsPage';
+import { test, expect, Locator } from "@playwright/test";
+import { inventoryUrl } from "../src/utils/env";
+import ProductsPage from "../src/pages/ProductsPage";
+import ProductDetailsPage from "../src/pages/ProductDetailsPage";
 
-test.describe('add to cart scenarios', () => {
-
-    test.describe('add to cart on inventory page', () => {
+test.describe("add to cart scenarios", () => {
+    test.describe("add to cart on products page", () => {
         let testedPage: ProductsPage;
-        let cartBadgeElement: Locator;
-        let cartBadgeCount: number;
+        let initialCartCount: number;
 
         test.beforeEach(async ({ page }) => {
-            const productsPage = new ProductsPage(page);
-            productsPage.gotoTheStore(inventoryUrl);
-            cartBadgeElement =  page.locator('[data-test="shopping-cart-link"]');
-            cartBadgeCount = parseInt((await cartBadgeElement.textContent()) || '0');
-            testedPage = productsPage;
+            testedPage = new ProductsPage(page);
+            await testedPage.gotoTheStore(inventoryUrl);
+            initialCartCount = await testedPage.getCartBadgeCount();
+            console.log("initialCartCount");
+            console.log(initialCartCount);
+            if (initialCartCount !== 0){
+                await page.evaluate(() =>
+                    localStorage.removeItem("cart-contents")
+                );
+                await page.reload();
+            }
         });
-        test('add first product to cart on inventory page', async ({ page }) => {
+        test("add first product to cart", async ({
+            page
+        }) => {
             let firstProduct: Locator;
             let firstProductButton: Locator;
 
             await test.step(`Get first product`, async () => {
-                firstProduct = await testedPage.getProductByIndex(1);
+                firstProduct = await testedPage.getProductByIndex(0);
                 expect(firstProduct).toBeVisible();
             });
             await test.step(`Add first product to cart`, async () => {
-                firstProductButton = await testedPage.addProductToCart(firstProduct);
-                await expect(firstProductButton).toHaveText('Remove');
+                firstProductButton = await testedPage.addProductToCart(
+                    firstProduct
+                );
+                await expect(firstProductButton).toHaveText("Remove");
             });
             await test.step(`Check if cart badge count is incremented`, async () => {
-                let newCount = parseInt((await cartBadgeElement.textContent()) || '0'); 
-                expect(newCount).toEqual(cartBadgeCount + 1);
+                let newCount = await testedPage.getCartBadgeCount();
+                expect(newCount).toBe(initialCartCount + 1);
             });
-            await page.pause();
+            //await page.pause();
         });
-        test('add random product to cart', async ({ page }) => {
+        test("add random product to cart", async ({ page }) => {
             let randomNumber: number;
             let productsCount: number;
             let randomProduct: Locator;
             let randomProductButton: Locator;
-            
-            await test.step(`Get all products count`, async () => {
+
+            await test.step(`Get random product`, async () => {
                 productsCount = await testedPage.getProductsCount();
                 console.log("productsCount");
                 console.log(productsCount);
-            });
-
-            await test.step(`Get random product`, async () => {
                 randomNumber = Math.floor(Math.random() * productsCount);
-                randomProduct = await testedPage.getProductByIndex(randomNumber);
+                //randomNumber = Math.floor(Math.random() * (productsCount - 1)) + 1   //skip first product
+                randomProduct = await testedPage.getProductByIndex(
+                    randomNumber
+                );
                 console.log("random number");
                 console.log(randomNumber);
                 await expect(randomProduct).toBeVisible();
             });
             await test.step(`Add random product to cart`, async () => {
-                randomProductButton = await testedPage.addProductToCart(randomProduct);
-                await expect(randomProductButton).toHaveText('Remove');
+                randomProductButton = await testedPage.addProductToCart(
+                    randomProduct
+                );
+                await expect(randomProductButton).toHaveText("Remove");
             });
             await test.step(`Check if cart badge count is incremented`, async () => {
-                let newCount = parseInt((await cartBadgeElement.textContent()) || '0'); 
-                expect(newCount).toEqual(cartBadgeCount + 1);
+                let newCount = await testedPage.getCartBadgeCount();
+                expect(newCount).toBe(initialCartCount + 1);
             });
-            await page.pause();
+            //await page.pause();
         });
 
-        test('add all products to cart', async ({ page }) => {
-            // Your test logic here
+        test("add all products to cart", async ({ page }) => {
+            let productsCount: number;
+
+            await test.step(`Get all products count`, async () => {
+                productsCount = await testedPage.getProductsCount();
+                console.log("productsCount");
+                console.log(productsCount);
+            });
+            await test.step(`Add all products to cart`, async () => {
+                let allProductButtons = await testedPage.addAllProductsToCart();
+                for (const productButton of allProductButtons) {
+                    await expect(productButton).toHaveText("Remove");
+                }
+            });
+            await test.step(`Check if cart badge count is incremented`, async () => {
+                let newCount = await testedPage.getCartBadgeCount();
+                expect(newCount).toBe(initialCartCount + productsCount);
+            });
+            //await page.pause();
         });
     });
-    test.describe('add to cart on product details page', () => {
+
+
+    test.describe("add to cart on product details page", () => {
         let productDetailsPage: ProductDetailsPage;
         let cartBadgeElement: Locator;
         let cartBadgeCount: number;
@@ -81,7 +110,7 @@ test.describe('add to cart scenarios', () => {
             // cartBadgeCount = parseInt((await cartBadgeElement.textContent()) || '0');
         });
 
-        test('add product from details page', async ({ page }) => {
+        test("add product from details page", async ({ page }) => {
             // Your test logic here
         });
     });

@@ -12,6 +12,9 @@ When("I log in as a standard user", async function (this: CucumberWorld) {
     await this.context?.storageState({ path: user.storageFile });
 });
 
-Then("I should be redirected to the inventory page", async function (this: CucumberWorld) {
-    await expect(this.page!).toHaveURL(inventoryUrl);
-});
+Then(
+    "I should be redirected to the inventory page",
+    async function (this: CucumberWorld) {
+        await expect(this.page!).toHaveURL(inventoryUrl);
+    }
+);

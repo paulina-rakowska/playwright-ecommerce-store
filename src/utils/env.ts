@@ -11,6 +11,7 @@ const getEnvVar = (key: string): string => {
 }
 export const baseUrl = getEnvVar('BASE_URL');
 export const inventoryUrl = getEnvVar('INVENTORY_URL');
+export const productDetailsUrl = getEnvVar('PRODUCT_DETAILS_URL');
 export const user = {
     username: getEnvVar('USER'),
     password: getEnvVar('PASSWORD'),

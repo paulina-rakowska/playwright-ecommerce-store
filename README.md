@@ -239,6 +239,7 @@ Run specific feature:
 
 npm run test -- src/features/01_login.feature
 npm run test -- src/features/02_get_products.feature
+npm run test -- src/features/03_add_to_cart.feature
 
 npm run test:features 
 

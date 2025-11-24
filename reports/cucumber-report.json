@@ -4,117 +4,82 @@
     "elements": [
       {
         "description": "",
-        "id": "login-functionality;login-as-a-standard-user",
+        "id": "adding-to-cart-functionality;check-if-adding-first-product-to-the-cart-is-working-on-products-page",
         "keyword": "Scenario",
         "line": 5,
-        "name": "Login as a standard user",
+        "name": "Check if adding first product to the cart is working on products page",
         "steps": [
           {
             "keyword": "Before",
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 1276762999
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "line": 6,
-            "name": "I log in as a standard user",
-            "match": {
-              "location": "src\\steps\\login.steps.ts:7"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 3142462300
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Then ",
-            "line": 7,
-            "name": "I should be redirected to the inventory page",
-            "match": {
-              "location": "src\\steps\\login.steps.ts:15"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 7638899
-            }
-          },
-          {
-            "keyword": "After",
-            "hidden": true,
-            "result": {
-              "status": "passed",
-              "duration": 14936700
-            }
-          }
-        ],
-        "tags": [
-          {
-            "name": "@notloggedin",
-            "line": 1
-          }
-        ],
-        "type": "scenario"
-      }
-    ],
-    "id": "login-functionality",
-    "line": 3,
-    "keyword": "Feature",
-    "name": "Login functionality",
-    "tags": [
-      {
-        "name": "@notloggedin",
-        "line": 1
-      }
-    ],
-    "uri": "src\\features\\01_login.feature"
-  },
-  {
-    "description": "",
-    "elements": [
-      {
-        "description": "",
-        "id": "getting-products-count-functionality;check-if-products-are-available-on-the-inventory-page",
-        "keyword": "Scenario",
-        "line": 5,
-        "name": "Check if products are available on the inventory page",
-        "steps": [
-          {
-            "keyword": "Before",
-            "hidden": true,
-            "result": {
-              "status": "passed",
-              "duration": 116568800
+              "duration": 1413388100
             }
           },
           {
             "arguments": [],
             "keyword": "Given ",
             "line": 6,
-            "name": "I am on the inventory page",
+            "name": "I am on the products page",
             "match": {
-              "location": "src\\steps\\get_products.ts:8"
+              "location": "src\\steps\\add_to_cart.ts:13"
             },
             "result": {
               "status": "passed",
-              "duration": 398922999
+              "duration": 509147899
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "First product is visible",
+            "match": {
+              "location": "src\\steps\\add_to_cart.ts:21"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4524100
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 8,
+            "name": "I click first product button Add to cart",
+            "match": {
+              "location": "src\\steps\\add_to_cart.ts:53"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 68207400
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "line": 7,
-            "name": "I should see at least one product",
+            "line": 9,
+            "name": "text on the button should change to Remove",
             "match": {
-              "location": "src\\steps\\get_products.ts:16"
+              "location": "src\\steps\\add_to_cart.ts:61"
             },
             "result": {
               "status": "passed",
-              "duration": 20867599
+              "duration": 5822400
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 10,
+            "name": "cart badge should be incremented by one",
+            "match": {
+              "location": "src\\steps\\add_to_cart.ts:65"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 5148299
             }
           },
           {
@@ -122,7 +87,117 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 8234800
+              "duration": 10800900
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@loggedin",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "adding-to-cart-functionality;check-if-adding-product-to-the-cart-is-working-on-product-details-page",
+        "keyword": "Scenario",
+        "line": 12,
+        "name": "Check if adding product to the cart is working on product details page",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 125410399
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 13,
+            "name": "The product API returns the standard set of mock products",
+            "match": {
+              "location": "src\\steps\\add_to_cart.ts:27"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2808899
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 14,
+            "name": "I am on the product details page",
+            "match": {
+              "location": "src\\steps\\add_to_cart.ts:38"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 435607799
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 15,
+            "name": "Add to cart button is visible",
+            "match": {
+              "location": "src\\steps\\add_to_cart.ts:45"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 5705799
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 16,
+            "name": "I click product button Add to cart",
+            "match": {
+              "location": "src\\steps\\add_to_cart.ts:57"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 52292400
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 17,
+            "name": "text on the button should change to Remove",
+            "match": {
+              "location": "src\\steps\\add_to_cart.ts:61"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6016300
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 18,
+            "name": "cart badge should be incremented by one",
+            "match": {
+              "location": "src\\steps\\add_to_cart.ts:65"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2932999
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 7069700
             }
           }
         ],
@@ -135,16 +210,16 @@
         "type": "scenario"
       }
     ],
-    "id": "getting-products-count-functionality",
+    "id": "adding-to-cart-functionality",
     "line": 3,
     "keyword": "Feature",
-    "name": "Getting products count functionality",
+    "name": "Adding to cart functionality",
     "tags": [
       {
         "name": "@loggedin",
         "line": 1
       }
     ],
-    "uri": "src\\features\\02_get_products.feature"
+    "uri": "src\\features\\03_add_to_cart.feature"
   }
 ]
