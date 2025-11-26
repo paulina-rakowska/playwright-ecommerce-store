@@ -14,7 +14,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 1413388100
+              "duration": 1769571299
             }
           },
           {
@@ -27,7 +27,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 509147899
+              "duration": 122807099
             }
           },
           {
@@ -40,7 +40,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 4524100
+              "duration": 2975900
             }
           },
           {
@@ -49,11 +49,11 @@
             "line": 8,
             "name": "I click first product button Add to cart",
             "match": {
-              "location": "src\\steps\\add_to_cart.ts:53"
+              "location": "src\\steps\\add_to_cart.ts:66"
             },
             "result": {
               "status": "passed",
-              "duration": 68207400
+              "duration": 39510099
             }
           },
           {
@@ -62,11 +62,11 @@
             "line": 9,
             "name": "text on the button should change to Remove",
             "match": {
-              "location": "src\\steps\\add_to_cart.ts:61"
+              "location": "src\\steps\\add_to_cart.ts:75"
             },
             "result": {
               "status": "passed",
-              "duration": 5822400
+              "duration": 4007399
             }
           },
           {
@@ -75,11 +75,11 @@
             "line": 10,
             "name": "cart badge should be incremented by one",
             "match": {
-              "location": "src\\steps\\add_to_cart.ts:65"
+              "location": "src\\steps\\add_to_cart.ts:79"
             },
             "result": {
               "status": "passed",
-              "duration": 5148299
+              "duration": 2990600
             }
           },
           {
@@ -87,7 +87,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 10800900
+              "duration": 10541099
             }
           }
         ],
@@ -111,7 +111,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 125410399
+              "duration": 107262700
             }
           },
           {
@@ -124,7 +124,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 2808899
+              "duration": 2443600
             }
           },
           {
@@ -133,11 +133,11 @@
             "line": 14,
             "name": "I am on the product details page",
             "match": {
-              "location": "src\\steps\\add_to_cart.ts:38"
+              "location": "src\\steps\\add_to_cart.ts:45"
             },
             "result": {
               "status": "passed",
-              "duration": 435607799
+              "duration": 1218541100
             }
           },
           {
@@ -146,11 +146,11 @@
             "line": 15,
             "name": "Add to cart button is visible",
             "match": {
-              "location": "src\\steps\\add_to_cart.ts:45"
+              "location": "src\\steps\\add_to_cart.ts:58"
             },
             "result": {
               "status": "passed",
-              "duration": 5705799
+              "duration": 4785300
             }
           },
           {
@@ -159,11 +159,11 @@
             "line": 16,
             "name": "I click product button Add to cart",
             "match": {
-              "location": "src\\steps\\add_to_cart.ts:57"
+              "location": "src\\steps\\add_to_cart.ts:70"
             },
             "result": {
               "status": "passed",
-              "duration": 52292400
+              "duration": 34637800
             }
           },
           {
@@ -172,11 +172,11 @@
             "line": 17,
             "name": "text on the button should change to Remove",
             "match": {
-              "location": "src\\steps\\add_to_cart.ts:61"
+              "location": "src\\steps\\add_to_cart.ts:75"
             },
             "result": {
               "status": "passed",
-              "duration": 6016300
+              "duration": 3214899
             }
           },
           {
@@ -185,11 +185,11 @@
             "line": 18,
             "name": "cart badge should be incremented by one",
             "match": {
-              "location": "src\\steps\\add_to_cart.ts:65"
+              "location": "src\\steps\\add_to_cart.ts:79"
             },
             "result": {
               "status": "passed",
-              "duration": 2932999
+              "duration": 3844100
             }
           },
           {
@@ -197,7 +197,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 7069700
+              "duration": 6934000
             }
           }
         ],

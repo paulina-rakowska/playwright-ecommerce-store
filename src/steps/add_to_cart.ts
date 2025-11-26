@@ -2,12 +2,12 @@ import { When, Then, Given } from "@cucumber/cucumber";
 import { expect, Locator } from "@playwright/test";
 import { CucumberWorld } from "../support/world";
 import ProductsPage from "../pages/ProductsPage";
-import { inventoryUrl, productDetailsUrl } from "../utils/env";
+import { baseUrl, inventoryUrl, productDetailsUrl } from "../utils/env";
 import ProductDetailsPage from "../pages/ProductDetailsPage";
 import { mockProductData } from "../../mocks/products";
 
 let testedUrl, testedPage: ProductsPage | ProductDetailsPage, selectedProduct: Locator, selectedProductButton: Locator,
-initialCartCount: number, productData: void | undefined;
+initialCartCount: number, productData: { id: number, productName: string, description: string, price: number, imageUrl: string } [];
 
 //ProductsPage
 Given("I am on the products page", async function (this: CucumberWorld) {
@@ -25,22 +25,35 @@ Given("First product is visible", async function (this: CucumberWorld) {
 
 //ProductDetailsPage
 Given("The product API returns the standard set of mock products", async function (this: CucumberWorld) {
-    await this.page?.route('**/api/products', async (route) => {
+    await this.page!.route('**/api/v1/products', async (route) => {
+        productData = structuredClone(mockProductData);
+
         await route.fulfill({
             status: 200,
             contentType: 'application/json',
-            body: JSON.stringify(mockProductData)
+            body: JSON.stringify(productData),
         });
-        console.log('*** API request mocked with custom product data! ***');
     });
-    console.log("inside given product api");
+
+    this.page!.on('response', async (response) => {
+        if (response.url().includes('/api/v1/products')) {
+            console.log(">>> Mocked product API received by browser! Before");
+            console.log(productData);
+        }
+    });
 });
 Given("I am on the product details page", async function (this: CucumberWorld) {
+    await this.page!.evaluate((url) => fetch(url), `${baseUrl}/api/v1/products`);
     testedPage = new ProductDetailsPage(this.page!);
-    testedUrl = productDetailsUrl+ "0";
-    await testedPage.gotoTheStore(testedUrl);
-    initialCartCount = await testedPage.getCartBadgeCount(); 
-    await testedPage.clearCart(); // Clear cart first
+    let prodIds = await testedPage.getProductIds(productData);
+
+    for(const prodId of prodIds){
+        console.log(prodId);
+        testedUrl = productDetailsUrl+ prodId.toString();
+        await testedPage.gotoTheStore(testedUrl);
+        initialCartCount = await testedPage.getCartBadgeCount(); 
+        await testedPage.clearCart(); // Clear cart first
+    }
 });
 Given('Add to cart button is visible', async function () {
    selectedProductButton = testedPage.getButton();
