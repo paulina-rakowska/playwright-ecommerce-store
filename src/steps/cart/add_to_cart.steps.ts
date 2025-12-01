@@ -6,7 +6,7 @@ import { baseUrl, inventoryUrl, productDetailsUrl } from "../../utils/env";
 import ProductDetailsPage from "../../pages/ProductDetailsPage";
 import { mockProductData } from "../../../mocks/products";
 
-let selectedProduct: Locator, selectedProductButton: Locator, productData: { id: number, productName: string, description: string, price: number, imageUrl: string } [];
+let selectedProduct: Locator, selectedProductButton: Locator;
 
 // Helper function to get testContext safely
 function getTestContext(world: CustomWorld) {
@@ -29,25 +29,6 @@ Given("First product is visible", async function (this: CustomWorld) {
 });
 
 //ProductDetailsPage
-Given("The product API returns the standard set of mock products", async function (this: CustomWorld) {
-    const { testedPage, testedUrl, initialCartCount } = getTestContext(this);
-    await this.page!.route('**/api/v1/products', async (route) => {
-        productData = structuredClone(mockProductData);
-
-        await route.fulfill({
-            status: 200,
-            contentType: 'application/json',
-            body: JSON.stringify(productData),
-        });
-    });
-
-    this.page!.on('response', async (response: { url: () => string | string[]; }) => {
-        if (response.url().includes('/api/v1/products')) {
-            console.log(">>> Mocked product API received by browser! Before");
-            console.log(productData);
-        }
-    });
-});
 Given('Add to cart button is visible', async function (this: CustomWorld) {
     const { testedPage, testedUrl, initialCartCount } = getTestContext(this);
     if(testedPage instanceof ProductDetailsPage){

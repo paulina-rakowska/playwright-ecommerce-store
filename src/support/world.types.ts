@@ -3,10 +3,19 @@ import { BrowserContext, Page } from '@playwright/test';
 import ProductsPage from '../pages/ProductsPage';
 import ProductDetailsPage from '../pages/ProductDetailsPage';
 
+export interface ProductData {
+    id: number;
+    productName: string;
+    description: string;
+    price: number;
+    imageUrl: string;
+}
+
 export interface TestContext {
     testedPage: ProductsPage | ProductDetailsPage;
     testedUrl: string;
     initialCartCount: number;
+    productData?: ProductData[]
 }
 
 export interface ICustomWorld extends CucumberWorld {
