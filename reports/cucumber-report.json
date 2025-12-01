@@ -4,6 +4,80 @@
     "elements": [
       {
         "description": "",
+        "id": "login-functionality;login-as-a-standard-user-should-be-success",
+        "keyword": "Scenario",
+        "line": 5,
+        "name": "Login as a standard user should be success",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 1278015200
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 6,
+            "name": "I log in as a standard user",
+            "match": {
+              "location": "src\\steps\\auth\\login.steps.ts:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1552462599
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 7,
+            "name": "I should be redirected to the inventory page",
+            "match": {
+              "location": "src\\steps\\auth\\login.steps.ts:15"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 5952800
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 9626499
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@notloggedin",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "login-functionality",
+    "line": 3,
+    "keyword": "Feature",
+    "name": "Login functionality",
+    "tags": [
+      {
+        "name": "@notloggedin",
+        "line": 1
+      }
+    ],
+    "uri": "src\\features\\auth\\login.feature"
+  },
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
         "id": "adding-to-cart-functionality;check-if-adding-first-product-to-the-cart-is-working-on-products-page",
         "keyword": "Scenario",
         "line": 5,
@@ -14,7 +88,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 1334315599
+              "duration": 118638100
             }
           },
           {
@@ -23,11 +97,11 @@
             "line": 6,
             "name": "I am on the products page",
             "match": {
-              "location": "src\\steps\\common\\common.steps.ts:15"
+              "location": "src\\steps\\common\\common.steps.ts:9"
             },
             "result": {
               "status": "passed",
-              "duration": 442690300
+              "duration": 512093499
             }
           },
           {
@@ -40,7 +114,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 3028999
+              "duration": 2150300
             }
           },
           {
@@ -53,7 +127,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 36548800
+              "duration": 52686600
             }
           },
           {
@@ -66,7 +140,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 4392899
+              "duration": 3566200
             }
           },
           {
@@ -79,7 +153,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 4467299
+              "duration": 2519500
             }
           },
           {
@@ -87,7 +161,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 9011899
+              "duration": 5917300
             }
           }
         ],
@@ -111,7 +185,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 106998000
+              "duration": 99768699
             }
           },
           {
@@ -120,11 +194,11 @@
             "line": 13,
             "name": "The product API returns the standard set of mock products",
             "match": {
-              "location": "src\\steps\\common\\common.steps.ts:30"
+              "location": "src\\steps\\common\\common.steps.ts:24"
             },
             "result": {
               "status": "passed",
-              "duration": 2460500
+              "duration": 2381900
             }
           },
           {
@@ -133,11 +207,11 @@
             "line": 14,
             "name": "I am on the product details page",
             "match": {
-              "location": "src\\steps\\common\\common.steps.ts:55"
+              "location": "src\\steps\\common\\common.steps.ts:49"
             },
             "result": {
               "status": "passed",
-              "duration": 1234635199
+              "duration": 1344550100
             }
           },
           {
@@ -150,7 +224,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 3405699
+              "duration": 3574499
             }
           },
           {
@@ -163,7 +237,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 45849999
+              "duration": 38324900
             }
           },
           {
@@ -176,7 +250,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 3178000
+              "duration": 3346199
             }
           },
           {
@@ -189,7 +263,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 2411500
+              "duration": 2325100
             }
           },
           {
@@ -197,7 +271,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 6145599
+              "duration": 8582800
             }
           }
         ],
@@ -221,5 +295,644 @@
       }
     ],
     "uri": "src\\features\\cart\\add_to_cart.feature"
+  },
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "checkout-functionality;checkout-with-one-item-end-to-end",
+        "keyword": "Scenario",
+        "line": 10,
+        "name": "Checkout with one item end-to-end",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 108318000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "I am on the products page",
+            "match": {
+              "location": "src\\steps\\common\\common.steps.ts:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 469734199
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "First product is visible",
+            "match": {
+              "location": "src\\steps\\cart\\add_to_cart.steps.ts:20"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 620499
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 8,
+            "name": "I click first product button Add to cart",
+            "match": {
+              "location": "src\\steps\\cart\\add_to_cart.steps.ts:44"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 36534200
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 11,
+            "name": "I click the cart icon",
+            "match": {
+              "location": "src\\steps\\checkout\\checkout.steps.ts:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 134000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 12,
+            "name": "I should see the cart page",
+            "match": {
+              "location": "src\\steps\\checkout\\checkout.steps.ts:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 73500
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 13,
+            "name": "cart item should be visible in cart list with name, description and price",
+            "match": {
+              "location": "src\\steps\\checkout\\checkout.steps.ts:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 61899
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 14,
+            "name": "I should see two buttons to go back and continue",
+            "match": {
+              "location": "src\\steps\\checkout\\checkout.steps.ts:15"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 61000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 15,
+            "name": "I click Checkout button",
+            "result": {
+              "status": "undefined",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 16,
+            "name": "I should see the form with 3 inputs",
+            "result": {
+              "status": "undefined",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 17,
+            "name": "the buttons placeholders should be \"First Name\", \"Last name\", \"Zip/Postal Code\"",
+            "result": {
+              "status": "undefined",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 18,
+            "name": "I should be able to type in them",
+            "result": {
+              "status": "undefined",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 19,
+            "name": "I should see two buttons to go back and continue",
+            "match": {
+              "location": "src\\steps\\checkout\\checkout.steps.ts:15"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 20,
+            "name": "all inputs are filled",
+            "result": {
+              "status": "undefined",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 21,
+            "name": "I click \"Continue\"",
+            "result": {
+              "status": "undefined",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 22,
+            "name": "I should be able to see payment and shipping information",
+            "result": {
+              "status": "undefined",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 23,
+            "name": "I should see two buttons to go back and continue",
+            "match": {
+              "location": "src\\steps\\checkout\\checkout.steps.ts:15"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 24,
+            "name": "I click \"Finish\"",
+            "result": {
+              "status": "undefined",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 25,
+            "name": "I the url should change to \"https://www.saucedemo.com/checkout-complete.html\"",
+            "result": {
+              "status": "undefined",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 26,
+            "name": "I should see thanks for placing my order",
+            "result": {
+              "status": "undefined",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 5558999
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@loggedin",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "checkout-functionality",
+    "line": 3,
+    "keyword": "Feature",
+    "name": "Checkout functionality",
+    "tags": [
+      {
+        "name": "@loggedin",
+        "line": 1
+      }
+    ],
+    "uri": "src\\features\\checkout\\checkout.feature"
+  },
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "getting-products-count-functionality;check-if-products-are-available-on-the-products-page",
+        "keyword": "Scenario",
+        "line": 5,
+        "name": "Check if products are available on the products page",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 104818400
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 6,
+            "name": "I navigate to the products page",
+            "match": {
+              "location": "src\\steps\\products\\listing.steps.ts:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 440370800
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 7,
+            "name": "I should see at least one product",
+            "match": {
+              "location": "src\\steps\\products\\listing.steps.ts:15"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 23076200
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 5316899
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@loggedin",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "getting-products-count-functionality",
+    "line": 3,
+    "keyword": "Feature",
+    "name": "Getting products count functionality",
+    "tags": [
+      {
+        "name": "@loggedin",
+        "line": 1
+      }
+    ],
+    "uri": "src\\features\\products\\listing.feature"
+  },
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "sorting-products-functionality;check-if-sorting-az-is-working",
+        "keyword": "Scenario",
+        "line": 5,
+        "name": "Check if Sorting AZ is working",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 102689000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "I am on the products page",
+            "match": {
+              "location": "src\\steps\\common\\common.steps.ts:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 411643500
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 7,
+            "name": "I click \"Name (A to Z)\" option in product sort select",
+            "match": {
+              "location": "src\\steps\\products\\sorting.steps.ts:21"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 9031899
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 8,
+            "name": "product names should be sorted in order \"A-Z\"",
+            "match": {
+              "location": "src\\steps\\products\\sorting.steps.ts:32"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 16949200
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 6379499
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@loggedin",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "sorting-products-functionality;check-if-sorting-za-is-working",
+        "keyword": "Scenario",
+        "line": 9,
+        "name": "Check if Sorting ZA is working",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 110095499
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 10,
+            "name": "I am on the products page",
+            "match": {
+              "location": "src\\steps\\common\\common.steps.ts:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 424427899
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 11,
+            "name": "I click \"Name (Z to A)\" option in product sort select",
+            "match": {
+              "location": "src\\steps\\products\\sorting.steps.ts:21"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 9928700
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 12,
+            "name": "product names should be sorted in order \"Z-A\"",
+            "match": {
+              "location": "src\\steps\\products\\sorting.steps.ts:32"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 14136900
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 5257100
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@loggedin",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "sorting-products-functionality;check-if-sorting-low-to-high-is-working",
+        "keyword": "Scenario",
+        "line": 13,
+        "name": "Check if Sorting low to high is working",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 122275000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 14,
+            "name": "I am on the products page",
+            "match": {
+              "location": "src\\steps\\common\\common.steps.ts:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 575364700
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 15,
+            "name": "I click \"Price (low to high)\" option in product sort select",
+            "match": {
+              "location": "src\\steps\\products\\sorting.steps.ts:21"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 8629399
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 16,
+            "name": "product prices should be sorted in order \"low-high\"",
+            "match": {
+              "location": "src\\steps\\products\\sorting.steps.ts:43"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 17064099
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 6858299
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@loggedin",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "sorting-products-functionality;check-if-sorting-high-to-low-is-working",
+        "keyword": "Scenario",
+        "line": 17,
+        "name": "Check if Sorting high to low is working",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 115886700
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 18,
+            "name": "I am on the products page",
+            "match": {
+              "location": "src\\steps\\common\\common.steps.ts:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 414647200
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 19,
+            "name": "I click \"Price (high to low)\" option in product sort select",
+            "match": {
+              "location": "src\\steps\\products\\sorting.steps.ts:21"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 10010699
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 20,
+            "name": "product prices should be sorted in order \"high-low\"",
+            "match": {
+              "location": "src\\steps\\products\\sorting.steps.ts:43"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 17937399
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 6421800
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@loggedin",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "sorting-products-functionality",
+    "line": 3,
+    "keyword": "Feature",
+    "name": "Sorting products functionality",
+    "tags": [
+      {
+        "name": "@loggedin",
+        "line": 1
+      }
+    ],
+    "uri": "src\\features\\products\\sorting.feature"
   }
 ]

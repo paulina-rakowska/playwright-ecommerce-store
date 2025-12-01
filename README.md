@@ -240,8 +240,8 @@ Run specific feature:
 npm run test -- src/features/auth/login.feature
 npm run test -- src/features/products/listing.feature
 npm run test -- src/features/cart/add_to_cart.feature
-npm run test -- src/features/checkout/checkout.feature
 npm run test -- src/features/products/sorting.feature
+npm run test -- src/features/checkout/checkout.feature
 
 npm run test:features 
 

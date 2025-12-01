@@ -8,7 +8,7 @@ test.use({
   storageState: { cookies: [], origins: [] } 
 });
 
-test.describe('login tests', () => {
+test.describe('Login tests', () => {
     test("logging standard_user", async ({ page, context }) => {
         const loginPage = new LoginPage(page);
 

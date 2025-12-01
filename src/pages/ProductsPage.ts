@@ -2,28 +2,27 @@ import { type Locator, type Page } from "@playwright/test";
 import BasicPage from "./BasicPage";
 
 export default class ProductsPage extends BasicPage {
-    constructor(page: Page) {
-        super(page);    
-    }
 
-    // Simplified - just return the locator
-    getProducts(): Locator {
-        return this.page.locator('[data-test="inventory-item"]');
+    readonly products: Locator;
+    readonly productSortSelect: Locator;
+
+    constructor(page: Page) {
+        super(page);   
+        this.products = this.page.locator('[data-test="inventory-item"]');
+        this.productSortSelect = this.page.locator('[data-test="product-sort-container"]');
     }
+    //getter
     getButton(product: Locator): Locator {
         return product.getByRole('button');
     }
-    getProductSortSelect() {
-        return this.page.locator('[data-test="product-sort-container"]');
-     
-    }
+
     async getProductByIndex(index: number): Promise<Locator> {
         // nth(0) =first()
-        return this.getProducts().nth(index);
+        return this.products.nth(index);
     }
 
     async getProductsCount(): Promise<number> {
-        return await this.getProducts().count();
+        return await this.products.count();
     }
 
     async addProductToCart(product: Locator): Promise<Locator> {
@@ -36,7 +35,7 @@ export default class ProductsPage extends BasicPage {
     }
 
     async addAllProductsToCart(): Promise<Locator[]> {
-        const buttons = await this.getProducts()
+        const buttons = await this.products
             .locator("button")
             .all();   // returns Locator[]
 
@@ -46,13 +45,13 @@ export default class ProductsPage extends BasicPage {
         return buttons;
     }
     async getProductNames(): Promise<string[]> {
-        const products = await this.getProducts().all();
+        const products = await this.products.all();
         const productNames = await Promise.all(products.map((product) => product.locator('[data-test="inventory-item-name"]').textContent()));
         //filtering out nulls
         return productNames.filter((productName): productName is string => productName !== null);
     }
     async getProductPrices(): Promise<number[]> {
-        const products = await this.getProducts().all();
+        const products = await this.products.all();
         const productPrices = await Promise.all(products.map(async (product) => {
             let productPrice = await product.locator('[data-test="inventory-item-price"]')?.textContent();
             if (!productPrice) {
@@ -65,24 +64,12 @@ export default class ProductsPage extends BasicPage {
     }
 
     async clickSort(sortOrder: string){
-        const sortSelect = this.getProductSortSelect();
-        switch(sortOrder){
-            case "az": 
-                await sortSelect.selectOption('az');
-            break;
-            case "za": 
-                await sortSelect.selectOption('za');
-            break;
-            case "lohi": 
-                await sortSelect.selectOption('lohi');
-            break;
-            case "hilo": 
-                await sortSelect.selectOption('hilo');
-            break;
-        }
+        const sortSelect = this.productSortSelect;
+        await sortSelect.selectOption(sortOrder);
+
     }
 
-    async sortProducts(products: string[], order: string){
+    async sortProducts(products: string[] | number[], order: string){
         let sortedProducts;
         switch(order){
             case "A-Z": 

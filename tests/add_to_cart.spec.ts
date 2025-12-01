@@ -4,7 +4,7 @@ import { mockProductData } from "../mocks/products";
 import ProductsPage from "../src/pages/ProductsPage";
 import ProductDetailsPage from "../src/pages/ProductDetailsPage";
 
-test.describe("add to cart scenarios", () => {
+test.describe("Add to cart tests", () => {
     test.describe("add to cart on products page", () => {
         let testedPage: ProductsPage;
         let initialCartCount: number;
@@ -93,7 +93,6 @@ test.describe("add to cart scenarios", () => {
     test.describe("add to cart on product details page", () => {
         let testedPage: ProductDetailsPage;
         let initialCartCount: number;
-        let selectedProductButton: Locator;
         let productData: { id: number, productName: string, description: string, price: number, imageUrl: string } [];
 
         test.beforeEach(async ({ page }) => {
@@ -125,13 +124,12 @@ test.describe("add to cart scenarios", () => {
                     await testedPage.gotoTheStore(productDetailsUrl+prodId.toString());
                     initialCartCount = await testedPage.getCartBadgeCount();
                     await testedPage.clearCart(); // Clear cart first
-                    selectedProductButton = testedPage.getButton();
-                    await expect(selectedProductButton).toBeVisible();
+                    await expect(testedPage.productButton).toBeVisible();
                 }
             });
             await test.step(`I click product button Add to cart`, async () => {
-                await selectedProductButton.click();
-                await expect(selectedProductButton).toHaveText("Remove");
+                await testedPage.productButton.click();
+                await expect(testedPage.productButton).toHaveText("Remove");
             });
             await test.step(`Check if cart badge count is incremented`, async () => {
                 let newCount = await testedPage.getCartBadgeCount();

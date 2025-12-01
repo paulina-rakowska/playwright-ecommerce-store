@@ -4,11 +4,11 @@ import BasicPage from "./BasicPage";
 
 export default class ProductDetailsPage extends BasicPage {
 
+    readonly productButton: Locator;
+
     constructor(page: Page) {
         super(page);
-    }
-    getButton(): Locator {
-        return this.page.locator('.btn_inventory');
+        this.productButton = this.page.locator('.btn_inventory');
     }
 
     async getProductIds(products: { id: number, productName: string, description: string, price: number, imageUrl: string } [] ): Promise<number[]> {

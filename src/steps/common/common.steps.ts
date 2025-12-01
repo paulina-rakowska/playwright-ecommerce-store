@@ -6,12 +6,6 @@ import { baseUrl, inventoryUrl, productDetailsUrl } from "../../utils/env";
 import ProductDetailsPage from "../../pages/ProductDetailsPage";
 import { mockProductData } from "../../../mocks/products";
 
-interface TestContext {
-    testedPage: ProductsPage | ProductDetailsPage;
-    testedUrl: string;
-    initialCartCount: number;
-}
-
 Given("I am on the products page", async function (this: CustomWorld) {
     const testedPage = new ProductsPage(this.page!);
     const testedUrl = inventoryUrl;

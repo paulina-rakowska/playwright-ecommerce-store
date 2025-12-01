@@ -32,7 +32,7 @@ Given("First product is visible", async function (this: CustomWorld) {
 Given('Add to cart button is visible', async function (this: CustomWorld) {
     const { testedPage, testedUrl, initialCartCount } = getTestContext(this);
     if(testedPage instanceof ProductDetailsPage){
-        selectedProductButton = testedPage.getButton();
+        selectedProductButton = testedPage.productButton;
         await expect(selectedProductButton).toBeVisible();
     }
     else {
