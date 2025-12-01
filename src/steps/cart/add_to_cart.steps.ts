@@ -1,10 +1,10 @@
 import { When, Then, Given } from "@cucumber/cucumber";
-import { expect, Locator } from "@playwright/test";
-import { CucumberWorld } from "../support/world";
-import ProductsPage from "../pages/ProductsPage";
-import { baseUrl, inventoryUrl, productDetailsUrl } from "../utils/env";
-import ProductDetailsPage from "../pages/ProductDetailsPage";
-import { mockProductData } from "../../mocks/products";
+import test, { expect, Locator } from "@playwright/test";
+import { CucumberWorld } from "../../support/world";
+import ProductsPage from "../../pages/ProductsPage";
+import { baseUrl, inventoryUrl, productDetailsUrl } from "../../utils/env";
+import ProductDetailsPage from "../../pages/ProductDetailsPage";
+import { mockProductData } from "../../../mocks/products";
 
 let testedUrl, testedPage: ProductsPage | ProductDetailsPage, selectedProduct: Locator, selectedProductButton: Locator,
 initialCartCount: number, productData: { id: number, productName: string, description: string, price: number, imageUrl: string } [];
@@ -19,8 +19,13 @@ Given("I am on the products page", async function (this: CucumberWorld) {
 });
 
 Given("First product is visible", async function (this: CucumberWorld) {
-    selectedProduct = await testedPage.getProductByIndex(0);
-    expect(selectedProduct).toBeVisible();
+    if(testedPage instanceof ProductsPage) {
+        selectedProduct = await testedPage.getProductByIndex(0);
+        expect(selectedProduct).toBeVisible();
+    }
+    else {
+        throw new Error("'This operation is only available on ProductsPage'");
+    }
 });
 
 //ProductDetailsPage
@@ -56,15 +61,19 @@ Given("I am on the product details page", async function (this: CucumberWorld) {
     }
 });
 Given('Add to cart button is visible', async function () {
-   selectedProductButton = testedPage.getButton();
-   console.log("selectedProductButton");
-   console.log(selectedProductButton);
-   await expect(selectedProductButton).toBeVisible();
+    if(testedPage instanceof ProductDetailsPage){
+        selectedProductButton = testedPage.getButton();
+        await expect(selectedProductButton).toBeVisible();
+    }
+    else {
+        throw new Error('This operation is only available on ProductDetailsPage');
+    }
 });
 
 //ProductsPage
 When("I click first product button Add to cart", async function (this: CucumberWorld) {
-    selectedProductButton = await testedPage.addProductToCart(selectedProduct);
+    if(testedPage instanceof ProductsPage) selectedProductButton = await testedPage.addProductToCart(selectedProduct);
+    else throw new Error('This operation is only available on ProductsPage');
 });
 //ProductDetailsPage
 When('I click product button Add to cart', async function () {

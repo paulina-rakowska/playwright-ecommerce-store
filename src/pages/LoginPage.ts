@@ -11,7 +11,7 @@ export default class LoginPage extends BasicPage {
         super(page);
     }
     async gotoTheStore(url: string) {
-            console.log("Login go to the store");
+        console.log("Login go to the store");
         await super.gotoTheStore(url);
         this.usernameElement = this.page.getByPlaceholder("Username");
         this.passwordElement = this.page.getByPlaceholder("Password");

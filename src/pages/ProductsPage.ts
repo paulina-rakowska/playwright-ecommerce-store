@@ -2,7 +2,6 @@ import { type Locator, type Page } from "@playwright/test";
 import BasicPage from "./BasicPage";
 
 export default class ProductsPage extends BasicPage {
-
     constructor(page: Page) {
         super(page);    
     }
@@ -14,7 +13,10 @@ export default class ProductsPage extends BasicPage {
     getButton(product: Locator): Locator {
         return product.getByRole('button');
     }
-
+    getProductSortSelect() {
+        return this.page.locator('[data-test="product-sort-container"]');
+     
+    }
     async getProductByIndex(index: number): Promise<Locator> {
         // nth(0) =first()
         return this.getProducts().nth(index);
@@ -43,20 +45,20 @@ export default class ProductsPage extends BasicPage {
         }
         return buttons;
     }
-    async sortProducts(sortOrder: string){
-        const products = this.getProducts();
+    async clickSort(sortOrder: string){
+        const sortSelect = this.getProductSortSelect();
         switch(sortOrder){
             case "az": 
-             console.log("It is a Sunday.");
+                await sortSelect.selectOption('az');
             break;
             case "za": 
-             console.log("It is a Sunday.");
+                await sortSelect.selectOption('za');
             break;
             case "lohi": 
-             console.log("It is a Sunday.");
+                await sortSelect.selectOption('lohi');
             break;
             case "hilo": 
-             console.log("It is a Sunday.");
+                await sortSelect.selectOption('hilo');
             break;
         }
     }

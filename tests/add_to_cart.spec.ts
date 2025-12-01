@@ -1,5 +1,6 @@
 import { test, expect, Locator } from "@playwright/test";
-import { inventoryUrl, productDetailsUrl } from "../src/utils/env";
+import { baseUrl, inventoryUrl, productDetailsUrl } from "../src/utils/env";
+import { mockProductData } from "../mocks/products";
 import ProductsPage from "../src/pages/ProductsPage";
 import ProductDetailsPage from "../src/pages/ProductDetailsPage";
 
@@ -73,8 +74,6 @@ test.describe("add to cart scenarios", () => {
 
             await test.step(`Get all products count`, async () => {
                 productsCount = await testedPage.getProductsCount();
-                console.log("productsCount");
-                console.log(productsCount);
             });
             await test.step(`Add all products to cart`, async () => {
                 let allProductButtons = await testedPage.addAllProductsToCart();
@@ -95,20 +94,40 @@ test.describe("add to cart scenarios", () => {
         let testedPage: ProductDetailsPage;
         let initialCartCount: number;
         let selectedProductButton: Locator;
+        let productData: { id: number, productName: string, description: string, price: number, imageUrl: string } [];
 
         test.beforeEach(async ({ page }) => {
-            testedPage = new ProductDetailsPage(page);
-            await testedPage.gotoTheStore(productDetailsUrl+"0");
-            initialCartCount = await testedPage.getCartBadgeCount();
-            await testedPage.clearCart(); // Clear cart first
+            await page.route('**/api/v1/products', async (route) => {
+                productData = structuredClone(mockProductData);
+
+                await route.fulfill({
+                    status: 200,
+                    contentType: 'application/json',
+                    body: JSON.stringify(productData),
+                });
+            });
+
+            page.on('response', async (response) => {
+                if (response.url().includes('/api/v1/products')) {
+                    console.log(">>> Mocked product API received by browser! Before");
+                    console.log(productData);
+
+                }
+            });
         });
 
         test("add product from details page", async ({ page }) => {
-            await test.step(`Add to cart button is visible`, async () => {
-                selectedProductButton = testedPage.getButton();
-                console.log("selectedProductButton");
-                console.log(selectedProductButton);
-                await expect(selectedProductButton).toBeVisible();
+            await test.step(`Visit all product details pages`, async () => {
+                await page!.evaluate((url) => fetch(url), `${baseUrl}/api/v1/products`);
+                testedPage = new ProductDetailsPage(page);
+                let prodIds = await testedPage.getProductIds(productData);
+                for(const prodId of prodIds){
+                    await testedPage.gotoTheStore(productDetailsUrl+prodId.toString());
+                    initialCartCount = await testedPage.getCartBadgeCount();
+                    await testedPage.clearCart(); // Clear cart first
+                    selectedProductButton = testedPage.getButton();
+                    await expect(selectedProductButton).toBeVisible();
+                }
             });
             await test.step(`I click product button Add to cart`, async () => {
                 await selectedProductButton.click();
