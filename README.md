@@ -237,9 +237,9 @@ For your project: since the job description emphasizes Cucumber + BDD, you shoul
 Run specific feature:
 
 
-npm run test -- src/features/login/login.feature
+npm run test -- src/features/auth/login.feature
 npm run test -- src/features/products/listing.feature
-npm run test -- src/features/cart/dd_to_cart.feature
+npm run test -- src/features/cart/add_to_cart.feature
 npm run test -- src/features/checkout/checkout.feature
 npm run test -- src/features/products/sorting.feature
 

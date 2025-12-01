@@ -1,42 +1,52 @@
-import { When, Then, Given} from "@cucumber/cucumber";
+import { When, Then} from "@cucumber/cucumber";
 import { expect } from "@playwright/test";
-import { CucumberWorld } from "../../support/world";
-import ProductsPage from "../../pages/ProductsPage";
-import { inventoryUrl } from "../../utils/env";
+import { CustomWorld } from "../../support/world";
 
-//AZ sorting
-let testedPage: ProductsPage, initialCartCount: number;
+// Helper function to get testContext safely
+function getTestContext(world: CustomWorld) {
+    if (!world.testContext) {
+        throw new Error('Test context not initialized');
+    }
+    return world.testContext;
+}
 
-When("I click Name (A to Z) option in product sort select", async function (this: CucumberWorld) {  
-    testedPage.clickSort('az');
-});
-Then("product names should be sorted in alphabetic order A-Z", async function (this: CucumberWorld) {
-   
-});
+// Map sort option names to sort values
+const sortMap: Record<string, string> = {
+    'Name (A to Z)': 'az',
+    'Name (Z to A)': 'za',
+    'Price (low to high)': 'lohi',
+    'Price (high to low)': 'hilo'
+};
 
-//ZA sorting
-
-When("I click Name (Z to A) option in product sort select", async function (this: CucumberWorld) {  
-    testedPage.clickSort('za');
-});
-Then("product names should be sorted reversely to alphabetic order Z-A", async function (this: CucumberWorld) {
-
-});
-
-//LtH sorting
-
-When("I click Price (low to high) option in product sort select", async function (this: CucumberWorld) {  
-    testedPage.clickSort('lohi');
-});
-Then("product prices should be sorted from lowest to highest", async function (this: CucumberWorld) {
-
+When('I click {string} option in product sort select', async function (this: CustomWorld, sortOption: string) {
+    const { testedPage } = getTestContext(this);
+    const sortValue = sortMap[sortOption];
+    
+    if (!sortValue) {
+        throw new Error(`Unknown sort option: ${sortOption}`);
+    }
+    
+    await testedPage.clickSort(sortValue);
 });
 
-//HtL sorting
+Then("product names should be sorted in order {string}", async function (this: CustomWorld, order: string) {
+    const { testedPage } = getTestContext(this);
+    const productNames = await testedPage.getProductNames();
+    let sortedNames = await testedPage.sortProducts(productNames, order);
+    console.log("Order", order);
+    console.log("Actual product names from page:", productNames);
+    console.log("Expected sorted:", sortedNames);
 
-When("I click Price (high to low) option in product sort select", async function (this: CucumberWorld) {  
-    testedPage.clickSort('hilo');
+    expect(productNames).toEqual(sortedNames);
 });
-Then("product prices should be sorted from highest to lowest", async function (this: CucumberWorld) {
 
+Then("product prices should be sorted in order {string}", async function (this: CustomWorld, order: string) {
+    const { testedPage } = getTestContext(this);
+    const productPrices = await testedPage.getProductPrices();
+    let sortedPrices = await testedPage.sortProducts(productPrices, order);
+    console.log("Order", order);
+    console.log("Actual product names from page:", productPrices);
+    console.log("Expected sorted:", sortedPrices);
+
+    expect(productPrices).toEqual(sortedPrices);
 });

@@ -1,17 +1,17 @@
-import { World, IWorldOptions, setWorldConstructor } from '@cucumber/cucumber';
+import { setWorldConstructor, World, IWorldOptions, IWorld } from '@cucumber/cucumber';
 import { Browser, BrowserContext, Page} from '@playwright/test';
+import { ICustomWorld } from './world.types';
 
-export class CustomWorld extends World {
+export class CustomWorld extends World implements ICustomWorld {
     // browser?: Browser;   browser is defined in hooks.ts
-    context?: BrowserContext;
-    page?: Page;
+    context: BrowserContext;
+    page: Page;
+    testContext?: TestContext;
 
     constructor(options: IWorldOptions) {
         super(options);
     }
 }
 
-setWorldConstructor(CustomWorld);
+setWorldConstructor(CustomWorld)
 
-// handy type alias for steps
-export type CucumberWorld = CustomWorld;

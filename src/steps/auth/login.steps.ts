@@ -1,8 +1,8 @@
 import { When, Then } from "@cucumber/cucumber";
 import { expect } from "@playwright/test";
-import { CucumberWorld } from "../support/world";
-import LoginPage from "../pages/LoginPage";
-import { user, inventoryUrl, baseUrl } from "../utils/env";
+import { CucumberWorld } from "../../support/world";
+import LoginPage from "../../pages/LoginPage";
+import { user, inventoryUrl, baseUrl } from "../../utils/env";
 
 When("I log in as a standard user", async function (this: CucumberWorld) {
     const loginPage = new LoginPage(this.page!);

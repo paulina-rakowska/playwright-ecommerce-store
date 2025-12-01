@@ -4,53 +4,43 @@
     "elements": [
       {
         "description": "",
-        "id": "sorting-products-functionality;check-if-sorting-az-is-working",
+        "id": "getting-products-count-functionality;check-if-products-are-available-on-the-products-page",
         "keyword": "Scenario",
         "line": 5,
-        "name": "Check if Sorting AZ is working",
+        "name": "Check if products are available on the products page",
         "steps": [
           {
             "keyword": "Before",
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 1328391999
+              "duration": 1942251500
             }
           },
           {
             "arguments": [],
-            "keyword": "Given ",
+            "keyword": "When ",
             "line": 6,
-            "name": "I am on the products page",
+            "name": "I navigate to the products page",
             "match": {
-              "location": "src\\steps\\add_to_cart.steps.ts:13"
+              "location": "src\\steps\\products\\listing.steps.ts:7"
             },
             "result": {
               "status": "passed",
-              "duration": 578015000
+              "duration": 473629700
             }
           },
           {
             "arguments": [],
-            "keyword": "When ",
+            "keyword": "Then ",
             "line": 7,
-            "name": "I click Name (A to Z) option in product sort select",
-            "result": {
-              "status": "undefined",
-              "duration": 0
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Then ",
-            "line": 8,
-            "name": "product names should be sorted in alphabetic order A-Z",
+            "name": "I should see at least one product",
             "match": {
-              "location": "src\\steps\\sort.steps.ts:13"
+              "location": "src\\steps\\products\\listing.steps.ts:15"
             },
             "result": {
-              "status": "skipped",
-              "duration": 0
+              "status": "passed",
+              "duration": 14805299
             }
           },
           {
@@ -58,211 +48,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 8636599
-            }
-          }
-        ],
-        "tags": [
-          {
-            "name": "@loggedin",
-            "line": 1
-          }
-        ],
-        "type": "scenario"
-      },
-      {
-        "description": "",
-        "id": "sorting-products-functionality;check-if-sorting-za-is-working",
-        "keyword": "Scenario",
-        "line": 10,
-        "name": "Check if Sorting ZA is working",
-        "steps": [
-          {
-            "keyword": "Before",
-            "hidden": true,
-            "result": {
-              "status": "passed",
-              "duration": 91186299
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Given ",
-            "line": 11,
-            "name": "I am on the products page",
-            "match": {
-              "location": "src\\steps\\add_to_cart.steps.ts:13"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 630252900
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "line": 12,
-            "name": "I click Name (Z to A) option in product sort select",
-            "result": {
-              "status": "undefined",
-              "duration": 0
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Then ",
-            "line": 13,
-            "name": "product names should be sorted reversely to alphabetic order Z-A",
-            "match": {
-              "location": "src\\steps\\sort.steps.ts:22"
-            },
-            "result": {
-              "status": "skipped",
-              "duration": 0
-            }
-          },
-          {
-            "keyword": "After",
-            "hidden": true,
-            "result": {
-              "status": "passed",
-              "duration": 4838900
-            }
-          }
-        ],
-        "tags": [
-          {
-            "name": "@loggedin",
-            "line": 1
-          }
-        ],
-        "type": "scenario"
-      },
-      {
-        "description": "",
-        "id": "sorting-products-functionality;check-if-sorting-price-low-to-high-is-working",
-        "keyword": "Scenario",
-        "line": 15,
-        "name": "Check if Sorting Price low to high is working",
-        "steps": [
-          {
-            "keyword": "Before",
-            "hidden": true,
-            "result": {
-              "status": "passed",
-              "duration": 88679799
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Given ",
-            "line": 16,
-            "name": "I am on the products page",
-            "match": {
-              "location": "src\\steps\\add_to_cart.steps.ts:13"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 540103600
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "line": 17,
-            "name": "I click Price (low to high) option in product sort select",
-            "result": {
-              "status": "undefined",
-              "duration": 0
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Then ",
-            "line": 18,
-            "name": "product prices should be sorted from lowest to highest",
-            "match": {
-              "location": "src\\steps\\sort.steps.ts:31"
-            },
-            "result": {
-              "status": "skipped",
-              "duration": 0
-            }
-          },
-          {
-            "keyword": "After",
-            "hidden": true,
-            "result": {
-              "status": "passed",
-              "duration": 5552899
-            }
-          }
-        ],
-        "tags": [
-          {
-            "name": "@loggedin",
-            "line": 1
-          }
-        ],
-        "type": "scenario"
-      },
-      {
-        "description": "",
-        "id": "sorting-products-functionality;check-if-sorting-price-high-to-low-is-working",
-        "keyword": "Scenario",
-        "line": 20,
-        "name": "Check if Sorting Price high to low is working",
-        "steps": [
-          {
-            "keyword": "Before",
-            "hidden": true,
-            "result": {
-              "status": "passed",
-              "duration": 94593100
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Given ",
-            "line": 21,
-            "name": "I am on the products page",
-            "match": {
-              "location": "src\\steps\\add_to_cart.steps.ts:13"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 512256999
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "line": 22,
-            "name": "I click Price (high to low) option in product sort select",
-            "result": {
-              "status": "undefined",
-              "duration": 0
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Then ",
-            "line": 23,
-            "name": "product prices should be sorted from highest to lowest",
-            "match": {
-              "location": "src\\steps\\sort.steps.ts:40"
-            },
-            "result": {
-              "status": "skipped",
-              "duration": 0
-            }
-          },
-          {
-            "keyword": "After",
-            "hidden": true,
-            "result": {
-              "status": "passed",
-              "duration": 4155300
+              "duration": 12072799
             }
           }
         ],
@@ -275,16 +61,16 @@
         "type": "scenario"
       }
     ],
-    "id": "sorting-products-functionality",
+    "id": "getting-products-count-functionality",
     "line": 3,
     "keyword": "Feature",
-    "name": "Sorting products functionality",
+    "name": "Getting products count functionality",
     "tags": [
       {
         "name": "@loggedin",
         "line": 1
       }
     ],
-    "uri": "src\\features\\05_sorting.feature"
+    "uri": "src\\features\\products\\listing.feature"
   }
 ]

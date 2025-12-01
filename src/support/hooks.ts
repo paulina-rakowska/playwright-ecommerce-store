@@ -34,7 +34,9 @@ async function createLoginContext(world: CustomWorld) {
 }
 
 BeforeAll(async function () {
-    browser = await chromium.launch({ headless: true });
+    if (!browser) {
+        browser = await chromium.launch({ headless: true });
+    }
 });
 Before(async function (scenario) {
   // Get all tags from the scenario
@@ -72,5 +74,7 @@ After(async function (this: CustomWorld) {
 })
 
 AfterAll(async function () {
-    await browser.close();
+    if (browser) {
+        await browser.close();
+    }
 })

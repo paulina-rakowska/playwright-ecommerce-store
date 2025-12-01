@@ -1,10 +1,10 @@
 import { When, Then, Given } from "@cucumber/cucumber";
 import test, { expect, Locator } from "@playwright/test";
-import { CucumberWorld } from "../support/world";
-import ProductsPage from "../pages/ProductsPage";
-import { baseUrl, inventoryUrl, productDetailsUrl } from "../utils/env";
-import ProductDetailsPage from "../pages/ProductDetailsPage";
-import { mockProductData } from "../../mocks/products";
+import { CucumberWorld } from "../../support/world";
+import ProductsPage from "../../pages/ProductsPage";
+import { baseUrl, inventoryUrl, productDetailsUrl } from "../../utils/env";
+import ProductDetailsPage from "../../pages/ProductDetailsPage";
+import { mockProductData } from "../../../mocks/products";
 
 When("I click the cart icon", async function (this: CucumberWorld) {
 });

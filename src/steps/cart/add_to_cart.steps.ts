@@ -1,24 +1,24 @@
 import { When, Then, Given } from "@cucumber/cucumber";
 import test, { expect, Locator } from "@playwright/test";
-import { CucumberWorld } from "../../support/world";
+import { CustomWorld} from "../../support/world";
 import ProductsPage from "../../pages/ProductsPage";
 import { baseUrl, inventoryUrl, productDetailsUrl } from "../../utils/env";
 import ProductDetailsPage from "../../pages/ProductDetailsPage";
 import { mockProductData } from "../../../mocks/products";
 
-let testedUrl, testedPage: ProductsPage | ProductDetailsPage, selectedProduct: Locator, selectedProductButton: Locator,
-initialCartCount: number, productData: { id: number, productName: string, description: string, price: number, imageUrl: string } [];
+let selectedProduct: Locator, selectedProductButton: Locator, productData: { id: number, productName: string, description: string, price: number, imageUrl: string } [];
 
-//ProductsPage
-Given("I am on the products page", async function (this: CucumberWorld) {
-    testedPage = new ProductsPage(this.page!);
-    testedUrl = inventoryUrl;
-    await testedPage.gotoTheStore(testedUrl);
-    initialCartCount = await testedPage.getCartBadgeCount();
-    await testedPage.clearCart(); // Clear cart first
-});
+// Helper function to get testContext safely
+function getTestContext(world: CustomWorld) {
+    if (!world.testContext) {
+        throw new Error('Test context not initialized');
+    }
+    return world.testContext;
+}
 
-Given("First product is visible", async function (this: CucumberWorld) {
+
+Given("First product is visible", async function (this: CustomWorld) {
+    const { testedPage, testedUrl, initialCartCount } = getTestContext(this);
     if(testedPage instanceof ProductsPage) {
         selectedProduct = await testedPage.getProductByIndex(0);
         expect(selectedProduct).toBeVisible();
@@ -29,7 +29,8 @@ Given("First product is visible", async function (this: CucumberWorld) {
 });
 
 //ProductDetailsPage
-Given("The product API returns the standard set of mock products", async function (this: CucumberWorld) {
+Given("The product API returns the standard set of mock products", async function (this: CustomWorld) {
+    const { testedPage, testedUrl, initialCartCount } = getTestContext(this);
     await this.page!.route('**/api/v1/products', async (route) => {
         productData = structuredClone(mockProductData);
 
@@ -40,27 +41,15 @@ Given("The product API returns the standard set of mock products", async functio
         });
     });
 
-    this.page!.on('response', async (response) => {
+    this.page!.on('response', async (response: { url: () => string | string[]; }) => {
         if (response.url().includes('/api/v1/products')) {
             console.log(">>> Mocked product API received by browser! Before");
             console.log(productData);
         }
     });
 });
-Given("I am on the product details page", async function (this: CucumberWorld) {
-    await this.page!.evaluate((url) => fetch(url), `${baseUrl}/api/v1/products`);
-    testedPage = new ProductDetailsPage(this.page!);
-    let prodIds = await testedPage.getProductIds(productData);
-
-    for(const prodId of prodIds){
-        console.log(prodId);
-        testedUrl = productDetailsUrl+ prodId.toString();
-        await testedPage.gotoTheStore(testedUrl);
-        initialCartCount = await testedPage.getCartBadgeCount(); 
-        await testedPage.clearCart(); // Clear cart first
-    }
-});
-Given('Add to cart button is visible', async function () {
+Given('Add to cart button is visible', async function (this: CustomWorld) {
+    const { testedPage, testedUrl, initialCartCount } = getTestContext(this);
     if(testedPage instanceof ProductDetailsPage){
         selectedProductButton = testedPage.getButton();
         await expect(selectedProductButton).toBeVisible();
@@ -71,7 +60,8 @@ Given('Add to cart button is visible', async function () {
 });
 
 //ProductsPage
-When("I click first product button Add to cart", async function (this: CucumberWorld) {
+When("I click first product button Add to cart", async function (this: CustomWorld) {
+    const { testedPage, testedUrl, initialCartCount } = getTestContext(this);
     if(testedPage instanceof ProductsPage) selectedProductButton = await testedPage.addProductToCart(selectedProduct);
     else throw new Error('This operation is only available on ProductsPage');
 });
@@ -81,12 +71,13 @@ When('I click product button Add to cart', async function () {
 });
 
 //ProductsPage + ProductDetailsPage
-Then('text on the button should change to Remove', async function (this: CucumberWorld) {
+Then('text on the button should change to Remove', async function (this: CustomWorld) {
     await expect(selectedProductButton).toHaveText("Remove");
 });
 
-Then("cart badge should be incremented by one", async function (this: CucumberWorld) {
+Then("cart badge should be incremented by one", async function (this: CustomWorld) {
     let newCount: number;
+    const { testedPage, testedUrl, initialCartCount } = getTestContext(this);
     if (testedPage) {
         newCount = await testedPage.getCartBadgeCount();
     } else {
