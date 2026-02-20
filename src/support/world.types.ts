@@ -1,7 +1,15 @@
-import { World as CucumberWorld } from '@cucumber/cucumber';
-import { BrowserContext, Page } from '@playwright/test';
-import ProductsPage from '../pages/ProductsPage';
-import ProductDetailsPage from '../pages/ProductDetailsPage';
+import { World as CucumberWorld } from "@cucumber/cucumber";
+import { BrowserContext, Page } from "@playwright/test";
+import ProductsPage from "../pages/ProductsPage";
+import ProductDetailsPage from "../pages/ProductDetailsPage";
+import CheckoutPage from "../pages/CheckoutPage";
+import LoginPage from "../pages/LoginPage";
+
+export type TestedPage =
+    | LoginPage
+    | ProductsPage
+    | ProductDetailsPage
+    | CheckoutPage;
 
 export interface ProductData {
     id: number;
@@ -12,14 +20,14 @@ export interface ProductData {
 }
 
 export interface TestContext {
-    testedPage: ProductsPage | ProductDetailsPage;
-    testedUrl: string;
+    testedPage: TestedPage;
+    testedUrl: string | undefined;
     initialCartCount: number;
-    productData?: ProductData[]
+    productData?: ProductData[];
 }
 
 export interface ICustomWorld extends CucumberWorld {
     context: BrowserContext;
     page: Page;
-    testContext?: TestContext;  // Make this optional since it's set later
+    testContext?: TestContext; // Make this optional since it's set later
 }

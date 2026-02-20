@@ -1,10 +1,10 @@
-#############  INSTALACJA  ################
+############# INSTALACJA ################
 
-1. npm init playwright@latest   - all default settings
-https://playwright.dev/docs/intro
+1. npm init playwright@latest - all default settings
+   https://playwright.dev/docs/intro
 
 2. npm install @cucumber/cucumber --save-dev
-https://cucumber.io/docs/
+   https://cucumber.io/docs/
 
 Cucumber Gherkin language - for no technical people:
 Gherkin language: Gherkin is a domain-specific language for writing Cucumber tests. It uses simple and clear syntax to define test scenarios in a given-when-then format.
@@ -18,10 +18,10 @@ src/features + src/steps = Cucumber BDD tests
 
 So Cucumber can run TypeScript, TypeScript execution and REPL for node.js, with source map and native ESM support.
 
-4. npm install dotenv --save-dev   
-→ To manage secrets/config cleanly instead of hardcoding them. 
-We install it because it’s the cleanest and most flexible way to manage environmental configuration for a test automation project.
-In real test frameworks you often need variables like:
+4. npm install dotenv --save-dev  
+   → To manage secrets/config cleanly instead of hardcoding them.
+   We install it because it’s the cleanest and most flexible way to manage environmental configuration for a test automation project.
+   In real test frameworks you often need variables like:
 
 BASE_URL
 
@@ -73,24 +73,20 @@ Cucumber HTML report = BDD-focused, high-level readable for management/QA
 Bottom line:
 You generate both reports because one is developer-focused, the other is stakeholder-focused.
 
-
-
 Cucumber:
-cucumber --init       -  Initialize the project:
-
+cucumber --init - Initialize the project:
 
 cucumber.config.ts
 This will configure Cucumber to run your .feature files with TypeScript step definitions.
 
-
 export default {
-  default: `--require-module ts-node/register --require src/steps/**/*.ts src/features/**/*.feature --format progress`,
+default: `--require-module ts-node/register --require src/steps/**/*.ts src/features/**/*.feature --format progress`,
 };
 --require-module ts-node/register → allows running TS directly
 
---require src/steps/**/*.ts → load all step definitions
+--require src/steps/\*_/_.ts → load all step definitions
 
-src/features/**/*.feature → pick up all feature files
+src/features/\*_/_.feature → pick up all feature files
 
 --format progress → simple console output (we’ll add HTML reporter later)
 
@@ -108,7 +104,6 @@ You wrote a cucumber.config.ts using ESM (ECMAScript Modules) import syntax:
 import { setDefaultTimeout } from "@cucumber/cucumber";
 export default { ... }
 
-
 Problem:
 
 Node (and CucumberJS) expects CommonJS for config files (.js) by default.
@@ -124,21 +119,20 @@ Cannot use import statement outside a module
 In the working version, we switched to:
 
 module.exports = {
-  default: [
-    '--require-module ts-node/register',
-    '--require src/steps/**/*.ts',
-    '--format progress',
-    'src/features/**/*.feature'
-  ].join(' ')
+default: [
+'--require-module ts-node/register',
+'--require src/steps/**/*.ts',
+'--format progress',
+'src/features/**/*.feature'
+].join(' ')
 };
-
 
 Key differences:
 
-Old	New
-.ts config file	.js config file
-import/export (ESM)	require/module.exports (CommonJS)
-Node tried to execute TypeScript config directly	Node executes plain JS config → then Cucumber uses ts-node/register for step definitions
+Old New
+.ts config file .js config file
+import/export (ESM) require/module.exports (CommonJS)
+Node tried to execute TypeScript config directly Node executes plain JS config → then Cucumber uses ts-node/register for step definitions
 
 Important: Only step definitions and support code (world.ts, hooks.ts, page objects, utils) run in TypeScript — the config itself must be JS (CommonJS) for now.
 
@@ -147,14 +141,12 @@ Different conventions exist
 Some tutorials (like the official 10-minute guide) use:
 
 features/
-  step_definitions/
-
+step_definitions/
 
 Some JavaScript/TypeScript projects use:
 
 src/features/
 src/steps/
-
 
 Some use /src/test/features and /src/test/steps for a “test-only” folder.
 
@@ -234,8 +226,8 @@ Playwright-first → wrap in Cucumber later ❌ (less ideal if doing BDD)
 
 For your project: since the job description emphasizes Cucumber + BDD, you should start with feature files.
 
+Cucumber:
 Run specific feature:
-
 
 npm run test -- src/features/auth/login.feature
 npm run test -- src/features/products/listing.feature
@@ -243,5 +235,14 @@ npm run test -- src/features/cart/add_to_cart.feature
 npm run test -- src/features/products/sorting.feature
 npm run test -- src/features/checkout/checkout.feature
 
-npm run test:features 
+Run all features:
 
+npm run test:features
+
+Playwright:
+
+npx playwright test
+npx playwright test --headed
+
+npx playwright test login.spec.ts
+npx playwright test listing.spec.ts

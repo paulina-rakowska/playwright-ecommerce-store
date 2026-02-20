@@ -1,4 +1,4 @@
-export const mockProductData = [
+export const stubProductData = [
   {
     id: 4,
     productName: "Sauce Labs Backpack",

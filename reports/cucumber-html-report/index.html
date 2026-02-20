@@ -401,7 +401,7 @@ pre {
           </div>
           <div class="label-container">
             <div class="generated-on">
-              Mon Nov 17 2025 13:05:36 GMT+0100 (czas środkowoeuropejski standardowy)
+              Fri Feb 20 2026 10:17:58 GMT+0100 (czas środkowoeuropejski standardowy)
             </div>
           </div>
       </div>
@@ -454,7 +454,7 @@ pre {
 
     <div>
       <p class="text-left">
-        Execution Time: 112ms
+        Execution Time: 1s 186ms
       </p>
       <p class="text-right">
         <a id="expand_all">Expand All</a>
@@ -478,19 +478,19 @@ pre {
             <div class="panel-heading">
                 <h4 class="panel-title">
                     
-                    <div class="tags"> <span class="tag">@no-auth</span>
+                    <div class="tags"> <span class="tag">@loggedin</span>
                         
                     </div>
                     
-                    <a data-toggle="collapse" href="#collapseFeaturechat_gpt_project2e65c200-1e2c-4357-bf31-df5e97ee18a7">
+                    <a data-toggle="collapse" href="#collapseFeaturechat_gpt_project835cd0fc-7096-4046-8c4f-533fd81ebec3">
                         <i class="glyphicon glyphicon-chevron-right"></i>
                         <i class="glyphicon glyphicon-chevron-down"></i>
-                        <b>Feature:</b>Login functionality
+                        <b>Feature:</b>Checkout functionality
                         <span class="label-container">
 
                         
 
-                        <span>112ms</span>
+                        <span>1s 186ms</span>
                                 
               <span class="label label-success"
                                                          title="1 Scenarios Passed">1</span>
@@ -503,7 +503,7 @@ pre {
                     </a>
                 </h4>
             </div>
-            <div id="collapseFeaturechat_gpt_project2e65c200-1e2c-4357-bf31-df5e97ee18a7" class="panel-collapse collapse">
+            <div id="collapseFeaturechat_gpt_project835cd0fc-7096-4046-8c4f-533fd81ebec3" class="panel-collapse collapse">
                 <div class="panel-body">
                     
                     
@@ -516,20 +516,20 @@ pre {
                                 <div class="tags">
                                 </div>
                                 
-                                <a data-toggle="collapse" href="#collapseScenariochat_gpt_project56565f7f-de97-4861-809a-243aaafc255a">
+                                <a data-toggle="collapse" href="#collapseScenariochat_gpt_project52f9b562-cba3-4679-b931-9305b4e0f95f">
                                     <div>
 
                                         <div style="padding-right: 30px">
                                             <i class="glyphicon glyphicon-chevron-right"></i>
                                             <i class="glyphicon glyphicon-chevron-down"></i>
-                                            <b>Scenario:</b><div class="ellipsis" data-text="Login as a standard user">Login as a standard user</div>
+                                            <b>Scenario:</b><div class="ellipsis" data-text="Checkout with one item end-to-end">Checkout with one item end-to-end</div>
                                         </div>
                                         <div>
                             <span class="label-container ">
-                                <span>112ms</span>
+                                <span>1s 186ms</span>
                               
                               <span class="label label-success"
-                                                               title="2 Steps Passed">2</span>
+                                                               title="6 Steps Passed">6</span>
                               
                               
                               
@@ -542,7 +542,7 @@ pre {
                                 </a>
                             </h4>
                         </div>
-                        <div id="collapseScenariochat_gpt_project56565f7f-de97-4861-809a-243aaafc255a"
+                        <div id="collapseScenariochat_gpt_project52f9b562-cba3-4679-b931-9305b4e0f95f"
                              class="panel-collapse collapse">
                             <div class="panel-body">
                                 <div></div>
@@ -560,12 +560,88 @@ pre {
                                     
                                     
                                     <span class="text">
-                        <span class="keyword highlight">When </span>
-                          <span class="stepname"> I log in as a standard user</span>
+                        <span class="keyword highlight">Given </span>
+                          <span class="stepname"> I am on the products page</span>
                             
                           
                               <span class="step-duration">
-                               105ms
+                               951ms
+                              </span>
+                            
+                         
+                            
+                          
+                          <!-- Adding data table data-->
+                          
+                      </span>
+                                
+                                
+
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                </div>
+                                </p>
+                                
+                                
+                                
+                                <p class="scenario-container">
+                                <div class="row steps">
+                                    
+                                    
+                                    <span class="label label-success" title="Success"><i
+                                            class="glyphicon glyphicon-ok"></i></span>
+                                    
+                                    
+                                    <span class="text">
+                        <span class="keyword highlight">And </span>
+                          <span class="stepname"> There is at least one product in the cart</span>
+                            
+                          
+                              <span class="step-duration">
+                               < 1ms
+                              </span>
+                            
+                         
+                            
+                          
+                          <!-- Adding data table data-->
+                          
+                      </span>
+                                
+                                
+
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                </div>
+                                </p>
+                                
+                                
+                                
+                                <p class="scenario-container">
+                                <div class="row steps">
+                                    
+                                    
+                                    <span class="label label-success" title="Success"><i
+                                            class="glyphicon glyphicon-ok"></i></span>
+                                    
+                                    
+                                    <span class="text">
+                        <span class="keyword highlight">When </span>
+                          <span class="stepname"> I click the cart icon</span>
+                            
+                          
+                              <span class="step-duration">
+                               198ms
                               </span>
                             
                          
@@ -599,11 +675,87 @@ pre {
                                     
                                     <span class="text">
                         <span class="keyword highlight">Then </span>
-                          <span class="stepname"> I should be redirected to the inventory page</span>
+                          <span class="stepname"> I should see the cart page</span>
                             
                           
                               <span class="step-duration">
                                6ms
+                              </span>
+                            
+                         
+                            
+                          
+                          <!-- Adding data table data-->
+                          
+                      </span>
+                                
+                                
+
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                </div>
+                                </p>
+                                
+                                
+                                
+                                <p class="scenario-container">
+                                <div class="row steps">
+                                    
+                                    
+                                    <span class="label label-success" title="Success"><i
+                                            class="glyphicon glyphicon-ok"></i></span>
+                                    
+                                    
+                                    <span class="text">
+                        <span class="keyword highlight">Then </span>
+                          <span class="stepname"> cart item should be visible in cart list with name, description and price</span>
+                            
+                          
+                              <span class="step-duration">
+                               29ms
+                              </span>
+                            
+                         
+                            
+                          
+                          <!-- Adding data table data-->
+                          
+                      </span>
+                                
+                                
+
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                </div>
+                                </p>
+                                
+                                
+                                
+                                <p class="scenario-container">
+                                <div class="row steps">
+                                    
+                                    
+                                    <span class="label label-success" title="Success"><i
+                                            class="glyphicon glyphicon-ok"></i></span>
+                                    
+                                    
+                                    <span class="text">
+                        <span class="keyword highlight">Then </span>
+                          <span class="stepname"> I should see two buttons to go back and continue</span>
+                            
+                          
+                              <span class="step-duration">
+                               < 1ms
                               </span>
                             
                          
