@@ -14,7 +14,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 149624599
+              "duration": 148204500
             }
           },
           {
@@ -27,7 +27,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 3392732199
+              "duration": 1287584399
             }
           },
           {
@@ -36,63 +36,232 @@
             "line": 7,
             "name": "There is at least one product in the cart",
             "match": {
-              "location": "src\\steps\\checkout\\checkout.steps.ts:17"
+              "location": "src\\steps\\checkout\\checkout.steps.ts:26"
             },
             "result": {
               "status": "passed",
-              "duration": 43499399
+              "duration": 70550499
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "line": 10,
+            "line": 11,
             "name": "I click the cart icon",
             "match": {
-              "location": "src\\steps\\checkout\\checkout.steps.ts:43"
+              "location": "src\\steps\\checkout\\checkout.steps.ts:53"
             },
             "result": {
               "status": "passed",
-              "duration": 65538199
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Then ",
-            "line": 11,
-            "name": "I should see the cart page",
-            "match": {
-              "location": "src\\steps\\checkout\\checkout.steps.ts:52"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 4475799
+              "duration": 43139099
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
             "line": 12,
-            "name": "cart item should be visible in cart list with name, description and price",
+            "name": "I should see the cart page",
             "match": {
-              "location": "src\\steps\\checkout\\checkout.steps.ts:55"
+              "location": "src\\steps\\checkout\\checkout.steps.ts:63"
             },
             "result": {
               "status": "passed",
-              "duration": 22575800
+              "duration": 6757200
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
             "line": 13,
-            "name": "I should see two buttons to checkout or continue shopping",
+            "name": "cart item should be visible in cart list with name, description and price",
             "match": {
-              "location": "src\\steps\\checkout\\checkout.steps.ts:81"
+              "location": "src\\steps\\checkout\\checkout.steps.ts:66"
             },
             "result": {
               "status": "passed",
-              "duration": 5602700
+              "duration": 23503700
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 14,
+            "name": "I should see two buttons to checkout or continue shopping",
+            "match": {
+              "location": "src\\steps\\checkout\\checkout.steps.ts:93"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6434899
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 16,
+            "name": "I click Checkout button",
+            "match": {
+              "location": "src\\steps\\checkout\\checkout.steps.ts:105"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 21516700
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 17,
+            "name": "I should see the form with 3 inputs",
+            "match": {
+              "location": "src\\steps\\checkout\\checkout.steps.ts:112"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4231900
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 18,
+            "name": "the buttons placeholders should be \"First Name\", \"Last Name\", \"Zip/Postal Code\"",
+            "match": {
+              "location": "src\\steps\\checkout\\checkout.steps.ts:122"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 9207199
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 19,
+            "name": "I should be able to type into the input fields dummy data: \"Andrew\", \"Tate\", \"34-231\"",
+            "match": {
+              "location": "src\\steps\\checkout\\checkout.steps.ts:142"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 27719299
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 20,
+            "name": "I should see two buttons to cancel and continue",
+            "match": {
+              "location": "src\\steps\\checkout\\checkout.steps.ts:161"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6893799
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 22,
+            "name": "I click Continue",
+            "match": {
+              "location": "src\\steps\\checkout\\checkout.steps.ts:174"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 33944199
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 23,
+            "name": "on the top there should be product list with name, description and price",
+            "match": {
+              "location": "src\\steps\\checkout\\checkout.steps.ts:181"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 15245300
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 24,
+            "name": "I should be able to see payment information",
+            "match": {
+              "location": "src\\steps\\checkout\\checkout.steps.ts:211"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2138699
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 25,
+            "name": "I should be able to see shipping information",
+            "match": {
+              "location": "src\\steps\\checkout\\checkout.steps.ts:223"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1478300
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 26,
+            "name": "I should be able to see Item total price",
+            "match": {
+              "location": "src\\steps\\checkout\\checkout.steps.ts:235"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3808899
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 27,
+            "name": "I should be able to see Tax price",
+            "match": {
+              "location": "src\\steps\\checkout\\checkout.steps.ts:248"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 98899
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 28,
+            "name": "I should be able to see Price Total",
+            "match": {
+              "location": "src\\steps\\checkout\\checkout.steps.ts:252"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 52099
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 29,
+            "name": "I should see two buttons to cancel and finish",
+            "match": {
+              "location": "src\\steps\\checkout\\checkout.steps.ts:256"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 48199
             }
           },
           {
@@ -100,7 +269,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 7787599
+              "duration": 7942700
             }
           }
         ],

@@ -2,14 +2,20 @@ import { World as CucumberWorld } from "@cucumber/cucumber";
 import { BrowserContext, Page } from "@playwright/test";
 import ProductsPage from "../pages/ProductsPage";
 import ProductDetailsPage from "../pages/ProductDetailsPage";
-import CheckoutPage from "../pages/CheckoutPage";
+import CartPage from "../pages/CartPage";
+import CheckoutStepOnePage from "../pages/CheckoutStepOnePage";
+import CheckoutStepTwoPage from "../pages/CheckoutStepTwoPage";
+import CheckoutCompletePage from "../pages/CheckoutCompletePage";
 import LoginPage from "../pages/LoginPage";
 
 export type TestedPage =
     | LoginPage
     | ProductsPage
     | ProductDetailsPage
-    | CheckoutPage;
+    | CartPage
+    | CheckoutStepOnePage
+    | CheckoutStepTwoPage
+    | CheckoutCompletePage;
 
 export interface ProductData {
     id: number;
