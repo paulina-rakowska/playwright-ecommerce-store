@@ -22,6 +22,14 @@ function getTestContext(world: CustomWorld) {
     }
     return world.testContext;
 }
+async function extractPrice(
+    element: Locator
+): Promise<{ elementCount: number; elementText: string }> {
+    const elementCount = await element.count();
+    const subTotal = await element.innerText();
+    const elementText = subTotal.match(/\d+\.?\d*/)?.[0] ?? "";
+    return { elementCount, elementText };
+}
 
 Given(
     "There is at least one product in the cart",
@@ -237,23 +245,47 @@ Then(
     async function (this: CustomWorld) {
         const { testedPage } = getTestContext(this);
         const checkoutPage = testedPage as CheckoutStepTwoPage;
-        const itemTotalCount = await checkoutPage.itemTotal.count();
-        const subTotal = await checkoutPage.itemTotal.innerText();
-        const itemTotal = subTotal.match(/\d+\.?\d*/)?.[0] ?? "";
 
+        const { elementCount: itemTotalCount, elementText: itemTotal } =
+            await extractPrice(checkoutPage.itemTotal);
+        console.log("itemTotal");
+        console.log(itemTotal);
         expect(itemTotalCount).toBe(1);
         expect(itemTotal).not.toBe("");
     }
 );
-Then(
-    "I should be able to see Tax price",
-    async function (this: CustomWorld) {}
-);
-Then(
-    "I should be able to see Price Total",
-    async function (this: CustomWorld) {}
-);
+Then("I should be able to see Tax price", async function (this: CustomWorld) {
+    const { testedPage } = getTestContext(this);
+    const checkoutPage = testedPage as CheckoutStepTwoPage;
+    const { elementCount: taxCount, elementText: tax } = await extractPrice(
+        checkoutPage.tax
+    );
+    console.log("tax");
+    console.log(tax);
+    expect(taxCount).toBe(1);
+    expect(tax).not.toBe("");
+});
+Then("I should be able to see Price Total", async function (this: CustomWorld) {
+    const { testedPage } = getTestContext(this);
+    const checkoutPage = testedPage as CheckoutStepTwoPage;
+    const { elementCount: totalCount, elementText: total } = await extractPrice(
+        checkoutPage.priceTotal
+    );
+    console.log("total");
+    console.log(total);
+    expect(totalCount).toBe(1);
+    expect(total).not.toBe("");
+});
 Then(
     "I should see two buttons to cancel and finish",
-    async function (this: CustomWorld) {}
+    async function (this: CustomWorld) {
+        const { testedPage } = getTestContext(this);
+        const checkoutPage = testedPage as CheckoutStepTwoPage;
+
+        const cancelButton = checkoutPage.cancelButton;
+        const finishButton = checkoutPage.finishButton;
+
+        await expect(cancelButton).toBeVisible();
+        await expect(finishButton).toBeVisible();
+    }
 );
