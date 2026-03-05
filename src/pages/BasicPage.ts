@@ -13,9 +13,8 @@ export default class BasicPage {
         try {
             console.log("Basic go to the store");
             console.log(url);
-            await this.page.goto(url);
-            //  await this.page.waitForURL(url);
-            await this.page.waitForLoadState("networkidle");
+            await this.page.goto(url, { waitUntil: "domcontentloaded" });
+            //await this.page.waitForLoadState("networkidle");
             console.log("Real url");
             console.log(this.page.url());
 
@@ -35,10 +34,12 @@ export default class BasicPage {
         const cartBadgeElement = this.page.locator(
             '[data-test="shopping-cart-link"]'
         );
-        const cartCount = await cartBadgeElement.textContent();
-        console.log("cartCount");
-        console.log(cartCount);
-        return parseInt(cartCount || "0");
+        // Sprawdź czy element w ogóle istnieje, zanim pobierzesz tekst
+        if (await cartBadgeElement.isVisible()) {
+            const cartCount = await cartBadgeElement.textContent();
+            return parseInt(cartCount || "0");
+        }
+        return 0;
     }
 
     async clearCart(): Promise<void> {

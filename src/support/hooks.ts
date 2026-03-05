@@ -12,8 +12,8 @@ import { expect } from "@playwright/test";
 // żeby nie "ubijał" kroków przed Playwrightem.
 setDefaultTimeout(10000);
 
-// 2. Ustawiamy, by każdy 'expect' czekał max 5s.
-// Dzięki temu po 5s bedzie błąd "locator.toBeVisible failed"
+// // 2. Ustawiamy, by każdy 'expect' czekał max 5s.
+// // Dzięki temu po 5s bedzie błąd "locator.toBeVisible failed"
 expect.configure({ timeout: 5000 });
 
 let browser: Browser;
@@ -52,18 +52,24 @@ Before(async function (scenario) {
     // Get all tags from the scenario
     const tags = scenario.pickle.tags.map((tag) => tag.name);
 
-    // Check if a specific tag exists
-    if (tags.includes("@notloggedin")) {
-        console.log("Before hook as NOT LOGGED in user");
-        await createLoginContext(this);
-    }
-
     if (tags.includes("@loggedin")) {
         console.log("Before hook as LOGGED in user");
         await createAuthenticatedContext(this);
         // Setup API-specific configuration
     }
+    // Check if a specific tag exists
+    else if (tags.includes("@notloggedin")) {
+        console.log("Before hook as NOT LOGGED in user");
+        await createLoginContext(this);
+    }
 
+    // Ustaw timeouty dla KAŻDEJ strony, niezależnie od sposobu logowania
+    if (this.page) {
+        // GLOBALNY timeout dla akcji (np. click, textContent, waitForSelector)
+        this.page.setDefaultTimeout(5000);
+        // GLOBALNY timeout dla nawigacji (np. goto, waitForLoadState)
+        this.page.setDefaultNavigationTimeout(5000);
+    }
     console.log("All tags:", tags);
 });
 
@@ -77,7 +83,37 @@ Before(async function (scenario) {
 //     await createLoginContext(this);
 // })
 
-After(async function (this: CustomWorld) {
+After(async function (this: CustomWorld, scenario) {
+    // 1. Sprawdzamy, czy scenariusz zakończył się błędem
+    if (scenario.result?.status !== "PASSED") {
+        if (this.page) {
+            // 2. Definiujemy ścieżkę do folderu reports/screenshots
+            const screenshotDir = path.join(
+                process.cwd(),
+                "reports",
+                "screenshots"
+            );
+
+            // 3. Tworzymy folder, jeśli nie istnieje
+            if (!fs.existsSync(screenshotDir)) {
+                fs.mkdirSync(screenshotDir, { recursive: true });
+            }
+
+            // 4. Tworzymy bezpieczną nazwę pliku (usuwamy znaki specjalne)
+            const fileName = scenario.pickle.name
+                .replace(/[^a-z0-9]/gi, "_")
+                .toLowerCase();
+            const screenshotPath = path.join(screenshotDir, `${fileName}.png`);
+
+            const image = await this.page.screenshot({
+                path: screenshotPath,
+                fullPage: true
+            });
+
+            // 5. Załączamy do raportu Cucumbera (pamięć)
+            await this.attach(image, "image/png");
+        }
+    }
     await this.page?.close();
     await this.context?.close();
 });

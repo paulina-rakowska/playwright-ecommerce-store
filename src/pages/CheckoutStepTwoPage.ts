@@ -31,7 +31,7 @@ export default class CheckoutStepTwoPage extends BasicPage {
         this.itemTotal = page.locator('[data-test="subtotal-label"]');
         this.tax = page.locator('[data-test="tax-label"]');
         this.priceTotal = page.locator('[data-test="total-label"]');
-        this.cancelButton = page.locator('[data-test="cdancel"]');
+        this.cancelButton = page.locator('[data-test="cancel"]');
         this.finishButton = page.locator('[data-test="finish"]');
     }
 

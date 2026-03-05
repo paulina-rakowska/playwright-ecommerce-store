@@ -30,6 +30,19 @@ async function extractPrice(
     const elementText = subTotal.match(/\d+\.?\d*/)?.[0] ?? "";
     return { elementCount, elementText };
 }
+function validateListNotEmpty(items: string[], fieldName: string) {
+    // Sprawdzamy, czy w ogóle są jakieś elementy w koszyku
+    expect(
+        items.length,
+        `List of ${fieldName} should not be empty`
+    ).toBeGreaterThan(0);
+    for (const item of items) {
+        expect(
+            item,
+            `${fieldName} value should not be an empty string`
+        ).not.toBe("");
+    }
+}
 
 Given(
     "There is at least one product in the cart",
@@ -57,15 +70,11 @@ Given(
         expect(newCount).toBeGreaterThan(0);
     }
 );
-//Step 1
 When("I click the cart icon", async function (this: CustomWorld) {
     console.log("I am on Checkout step");
     const cartPage = new CartPage(this.page!);
     await cartPage.cartIcon.click();
-    this.testContext = {
-        ...this.testContext,
-        testedPage: cartPage
-    };
+    this.testContext!.testedPage = cartPage;
 });
 //Cart page
 Then("I should see the cart page", async function (this: CustomWorld) {
@@ -79,23 +88,11 @@ Then(
         const names = await cartPage.getCartItemsNames();
         const descriptions = await cartPage.getCartItemsDescs();
         const prices = await cartPage.getCartItemsPrices();
-        console.log("names ");
-        console.log(names);
-        console.log("descriptions ");
-        console.log(descriptions);
-        console.log("prices ");
-        console.log(prices);
 
-        //if there is at least one product- arrays should contain at least one string
-        expect(names.length).toBeGreaterThan(0);
-        expect(descriptions.length).toBeGreaterThan(0);
-        expect(prices.length).toBeGreaterThan(0);
-
-        names.forEach(async (name: string) => expect(name).not.toBe(""));
-        descriptions.forEach(async (description: string) =>
-            expect(description).not.toBe("")
-        );
-        prices.forEach(async (price: string) => expect(price).not.toBe(""));
+        // Używamy nowej funkcji pomocniczej
+        validateListNotEmpty(names, "names");
+        validateListNotEmpty(descriptions, "descriptions");
+        validateListNotEmpty(prices, "prices");
     }
 );
 Then(
@@ -113,7 +110,7 @@ Then(
 When("I click Checkout button", async function (this: CustomWorld) {
     const { testedPage } = getTestContext(this);
     const cartPage = testedPage as CartPage;
-    cartPage.checkoutButton.click();
+    await cartPage.checkoutButton.click();
     await this.page.waitForURL(checkoutStepOneUrl);
 });
 //Step 1
@@ -121,10 +118,7 @@ Then("I should see the form with 3 inputs", async function (this: CustomWorld) {
     const checkoutPage = new CheckoutStepOnePage(this.page!);
 
     const inputsLength = (await checkoutPage.checkoutInputs)?.length;
-    this.testContext = {
-        ...this.testContext,
-        testedPage: checkoutPage
-    };
+    this.testContext!.testedPage = checkoutPage;
     expect(inputsLength).toBe(3);
 });
 Then(
@@ -193,27 +187,12 @@ Then(
         const names = await checkoutPage.getCartItemsNames();
         const descriptions = await checkoutPage.getCartItemsDescs();
         const prices = await checkoutPage.getCartItemsPrices();
-        console.log("names ");
-        console.log(names);
-        console.log("descriptions ");
-        console.log(descriptions);
-        console.log("prices ");
-        console.log(prices);
-        this.testContext = {
-            ...this.testContext,
-            testedPage: checkoutPage
-        };
+        this.testContext!.testedPage = checkoutPage;
 
-        //if there is at least one product- arrays should contain at least one string
-        expect(names.length).toBeGreaterThan(0);
-        expect(descriptions.length).toBeGreaterThan(0);
-        expect(prices.length).toBeGreaterThan(0);
-
-        names.forEach(async (name: string) => expect(name).not.toBe(""));
-        descriptions.forEach(async (description: string) =>
-            expect(description).not.toBe("")
-        );
-        prices.forEach(async (price: string) => expect(price).not.toBe(""));
+        // Używamy nowej funkcji pomocniczej
+        validateListNotEmpty(names, "names");
+        validateListNotEmpty(descriptions, "descriptions");
+        validateListNotEmpty(prices, "prices");
     }
 );
 Then(
@@ -287,5 +266,32 @@ Then(
 
         await expect(cancelButton).toBeVisible();
         await expect(finishButton).toBeVisible();
+    }
+);
+When("I click Finish", async function (this: CustomWorld) {
+    const { testedPage } = getTestContext(this);
+    const checkoutPage = testedPage as CheckoutStepTwoPage;
+    await checkoutPage.finishButton.click();
+    await this.page.waitForLoadState("domcontentloaded");
+});
+//Complete
+Then(
+    "the url should change to {string}",
+    async function (this: CustomWorld, string: string) {
+        const checkoutPage = new CheckoutCompletePage(this.page!);
+        this.testContext!.testedPage = checkoutPage;
+        await expect(this.page).toHaveURL(string);
+    }
+);
+Then(
+    "I should see thanks for placing my order: {string}, {string}",
+    async function (this: CustomWorld, string1: string, string2: string) {
+        const { testedPage } = getTestContext(this);
+        const checkoutPage = testedPage as CheckoutCompletePage;
+        const completeHeader = await checkoutPage.completeHeader.innerText();
+        const completeText = await checkoutPage.completeText.innerText();
+        expect(completeHeader).toBe(string1);
+        expect(completeText).toBe(string2);
+        await expect(checkoutPage.backHomeButton).toBeVisible();
     }
 );

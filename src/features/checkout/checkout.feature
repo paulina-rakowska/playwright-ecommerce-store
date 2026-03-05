@@ -27,3 +27,7 @@ Background:
         And I should be able to see Tax price
         And I should be able to see Price Total
         And I should see two buttons to cancel and finish
+        #Complete
+        When I click Finish
+        Then the url should change to "https://www.saucedemo.com/checkout-complete.html"
+        And I should see thanks for placing my order: "Thank you for your order!", "Your order has been dispatched, and will arrive just as fast as the pony can get there!"
