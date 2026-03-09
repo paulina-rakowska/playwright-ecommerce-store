@@ -47,18 +47,15 @@ function validateListNotEmpty(items: string[], fieldName: string) {
 Given(
     "There is at least one product in the cart",
     async function (this: CustomWorld) {
-        console.log("There is at least one product in the cart");
         const { testedPage, initialCartCount } = getTestContext(this);
         const productsPage = testedPage as ProductsPage;
         let productToBeAdded;
         if (initialCartCount === 0) {
-            console.log("nothing is added to the cart");
             let productsCount = await productsPage.getProductsCount();
             let productIndex =
                 productsCount > 0
                     ? Math.floor(Math.random() * productsCount)
                     : 0;
-            console.log("productIndex " + productIndex);
             productToBeAdded =
                 await productsPage.getProductByIndex(productIndex);
             await productsPage.addProductToCart(productToBeAdded);
@@ -111,7 +108,7 @@ When("I click Checkout button", async function (this: CustomWorld) {
     const { testedPage } = getTestContext(this);
     const cartPage = testedPage as CartPage;
     await cartPage.checkoutButton.click();
-    await this.page.waitForURL(checkoutStepOneUrl);
+    await this.page.toHaveURL(checkoutStepOneUrl);
 });
 //Step 1
 Then("I should see the form with 3 inputs", async function (this: CustomWorld) {
@@ -227,8 +224,6 @@ Then(
 
         const { elementCount: itemTotalCount, elementText: itemTotal } =
             await extractPrice(checkoutPage.itemTotal);
-        console.log("itemTotal");
-        console.log(itemTotal);
         expect(itemTotalCount).toBe(1);
         expect(itemTotal).not.toBe("");
     }
@@ -239,8 +234,6 @@ Then("I should be able to see Tax price", async function (this: CustomWorld) {
     const { elementCount: taxCount, elementText: tax } = await extractPrice(
         checkoutPage.tax
     );
-    console.log("tax");
-    console.log(tax);
     expect(taxCount).toBe(1);
     expect(tax).not.toBe("");
 });
@@ -250,8 +243,6 @@ Then("I should be able to see Price Total", async function (this: CustomWorld) {
     const { elementCount: totalCount, elementText: total } = await extractPrice(
         checkoutPage.priceTotal
     );
-    console.log("total");
-    console.log(total);
     expect(totalCount).toBe(1);
     expect(total).not.toBe("");
 });
@@ -288,10 +279,9 @@ Then(
     async function (this: CustomWorld, string1: string, string2: string) {
         const { testedPage } = getTestContext(this);
         const checkoutPage = testedPage as CheckoutCompletePage;
-        const completeHeader = await checkoutPage.completeHeader.innerText();
         const completeText = await checkoutPage.completeText.innerText();
-        expect(completeHeader).toBe(string1);
-        expect(completeText).toBe(string2);
+        await expect(checkoutPage.completeHeader).toHaveText(string1);
+        await expect(checkoutPage.completeText).toHaveText(string2);
         await expect(checkoutPage.backHomeButton).toBeVisible();
     }
 );
