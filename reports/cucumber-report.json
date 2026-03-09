@@ -14,7 +14,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 139196400
+              "duration": 137577199
             }
           },
           {
@@ -27,7 +27,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 396308599
+              "duration": 399529100
             }
           },
           {
@@ -40,7 +40,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 787707199
+              "duration": 359479899
             }
           },
           {
@@ -49,11 +49,11 @@
             "line": 11,
             "name": "I click the cart icon",
             "match": {
-              "location": "src\\steps\\checkout\\checkout.steps.ts:73"
+              "location": "src\\steps\\checkout\\checkout.steps.ts:74"
             },
             "result": {
               "status": "passed",
-              "duration": 40611200
+              "duration": 48296299
             }
           },
           {
@@ -62,11 +62,11 @@
             "line": 12,
             "name": "I should see the cart page",
             "match": {
-              "location": "src\\steps\\checkout\\checkout.steps.ts:80"
+              "location": "src\\steps\\checkout\\checkout.steps.ts:81"
             },
             "result": {
               "status": "passed",
-              "duration": 5588199
+              "duration": 7045300
             }
           },
           {
@@ -75,11 +75,11 @@
             "line": 13,
             "name": "cart item should be visible in cart list with name, description and price",
             "match": {
-              "location": "src\\steps\\checkout\\checkout.steps.ts:83"
+              "location": "src\\steps\\checkout\\checkout.steps.ts:84"
             },
             "result": {
               "status": "passed",
-              "duration": 24363400
+              "duration": 23072099
             }
           },
           {
@@ -88,11 +88,11 @@
             "line": 14,
             "name": "I should see two buttons to checkout or continue shopping",
             "match": {
-              "location": "src\\steps\\checkout\\checkout.steps.ts:98"
+              "location": "src\\steps\\checkout\\checkout.steps.ts:102"
             },
             "result": {
               "status": "passed",
-              "duration": 5535599
+              "duration": 7487599
             }
           },
           {
@@ -101,11 +101,11 @@
             "line": 16,
             "name": "I click Checkout button",
             "match": {
-              "location": "src\\steps\\checkout\\checkout.steps.ts:110"
+              "location": "src\\steps\\checkout\\checkout.steps.ts:117"
             },
             "result": {
               "status": "passed",
-              "duration": 30777499
+              "duration": 37244400
             }
           },
           {
@@ -114,11 +114,11 @@
             "line": 17,
             "name": "I should see the form with 3 inputs",
             "match": {
-              "location": "src\\steps\\checkout\\checkout.steps.ts:117"
+              "location": "src\\steps\\checkout\\checkout.steps.ts:127"
             },
             "result": {
               "status": "passed",
-              "duration": 3583900
+              "duration": 3162499
             }
           },
           {
@@ -127,11 +127,11 @@
             "line": 18,
             "name": "the buttons placeholders should be \"First Name\", \"Last Name\", \"Zip/Postal Code\"",
             "match": {
-              "location": "src\\steps\\checkout\\checkout.steps.ts:124"
+              "location": "src\\steps\\checkout\\checkout.steps.ts:134"
             },
             "result": {
               "status": "passed",
-              "duration": 8430600
+              "duration": 7312799
             }
           },
           {
@@ -140,11 +140,11 @@
             "line": 19,
             "name": "I should be able to type into the input fields dummy data: \"Andrew\", \"Tate\", \"34-231\"",
             "match": {
-              "location": "src\\steps\\checkout\\checkout.steps.ts:144"
+              "location": "src\\steps\\checkout\\checkout.steps.ts:159"
             },
             "result": {
               "status": "passed",
-              "duration": 28657400
+              "duration": 25099900
             }
           },
           {
@@ -153,11 +153,11 @@
             "line": 20,
             "name": "I should see two buttons to cancel and continue",
             "match": {
-              "location": "src\\steps\\checkout\\checkout.steps.ts:163"
+              "location": "src\\steps\\checkout\\checkout.steps.ts:183"
             },
             "result": {
               "status": "passed",
-              "duration": 5039600
+              "duration": 5472899
             }
           },
           {
@@ -166,11 +166,11 @@
             "line": 22,
             "name": "I click Continue",
             "match": {
-              "location": "src\\steps\\checkout\\checkout.steps.ts:176"
+              "location": "src\\steps\\checkout\\checkout.steps.ts:201"
             },
             "result": {
               "status": "passed",
-              "duration": 29642699
+              "duration": 41596299
             }
           },
           {
@@ -179,11 +179,11 @@
             "line": 23,
             "name": "on the top there should be product list with name, description and price",
             "match": {
-              "location": "src\\steps\\checkout\\checkout.steps.ts:183"
+              "location": "src\\steps\\checkout\\checkout.steps.ts:211"
             },
             "result": {
               "status": "passed",
-              "duration": 14186200
+              "duration": 13232599
             }
           },
           {
@@ -192,11 +192,11 @@
             "line": 24,
             "name": "I should be able to see payment information",
             "match": {
-              "location": "src\\steps\\checkout\\checkout.steps.ts:198"
+              "location": "src\\steps\\checkout\\checkout.steps.ts:226"
             },
             "result": {
               "status": "passed",
-              "duration": 3375799
+              "duration": 1856699
             }
           },
           {
@@ -205,11 +205,11 @@
             "line": 25,
             "name": "I should be able to see shipping information",
             "match": {
-              "location": "src\\steps\\checkout\\checkout.steps.ts:210"
+              "location": "src\\steps\\checkout\\checkout.steps.ts:243"
             },
             "result": {
               "status": "passed",
-              "duration": 2508699
+              "duration": 1535100
             }
           },
           {
@@ -218,11 +218,11 @@
             "line": 26,
             "name": "I should be able to see Item total price",
             "match": {
-              "location": "src\\steps\\checkout\\checkout.steps.ts:222"
+              "location": "src\\steps\\checkout\\checkout.steps.ts:260"
             },
             "result": {
               "status": "passed",
-              "duration": 4990999
+              "duration": 4057500
             }
           },
           {
@@ -231,11 +231,11 @@
             "line": 27,
             "name": "I should be able to see Tax price",
             "match": {
-              "location": "src\\steps\\checkout\\checkout.steps.ts:236"
+              "location": "src\\steps\\checkout\\checkout.steps.ts:277"
             },
             "result": {
               "status": "passed",
-              "duration": 4544699
+              "duration": 3430999
             }
           },
           {
@@ -244,11 +244,11 @@
             "line": 28,
             "name": "I should be able to see Price Total",
             "match": {
-              "location": "src\\steps\\checkout\\checkout.steps.ts:247"
+              "location": "src\\steps\\checkout\\checkout.steps.ts:289"
             },
             "result": {
               "status": "passed",
-              "duration": 4533399
+              "duration": 4103900
             }
           },
           {
@@ -257,11 +257,11 @@
             "line": 29,
             "name": "I should see two buttons to cancel and finish",
             "match": {
-              "location": "src\\steps\\checkout\\checkout.steps.ts:258"
+              "location": "src\\steps\\checkout\\checkout.steps.ts:301"
             },
             "result": {
               "status": "passed",
-              "duration": 5393799
+              "duration": 4171099
             }
           },
           {
@@ -270,11 +270,11 @@
             "line": 31,
             "name": "I click Finish",
             "match": {
-              "location": "src\\steps\\checkout\\checkout.steps.ts:271"
+              "location": "src\\steps\\checkout\\checkout.steps.ts:319"
             },
             "result": {
               "status": "passed",
-              "duration": 32150799
+              "duration": 36395300
             }
           },
           {
@@ -283,11 +283,11 @@
             "line": 32,
             "name": "the url should change to \"https://www.saucedemo.com/checkout-complete.html\"",
             "match": {
-              "location": "src\\steps\\checkout\\checkout.steps.ts:278"
+              "location": "src\\steps\\checkout\\checkout.steps.ts:329"
             },
             "result": {
               "status": "passed",
-              "duration": 3061499
+              "duration": 1794800
             }
           },
           {
@@ -296,11 +296,11 @@
             "line": 33,
             "name": "I should see thanks for placing my order: \"Thank you for your order!\", \"Your order has been dispatched, and will arrive just as fast as the pony can get there!\"",
             "match": {
-              "location": "src\\steps\\checkout\\checkout.steps.ts:286"
+              "location": "src\\steps\\checkout\\checkout.steps.ts:337"
             },
             "result": {
               "status": "passed",
-              "duration": 7422900
+              "duration": 10728099
             }
           },
           {
@@ -308,7 +308,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 7518300
+              "duration": 6542100
             }
           }
         ],

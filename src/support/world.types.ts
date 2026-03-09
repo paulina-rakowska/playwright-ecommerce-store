@@ -7,15 +7,7 @@ import CheckoutStepOnePage from "../pages/CheckoutStepOnePage";
 import CheckoutStepTwoPage from "../pages/CheckoutStepTwoPage";
 import CheckoutCompletePage from "../pages/CheckoutCompletePage";
 import LoginPage from "../pages/LoginPage";
-
-export type TestedPage =
-    | LoginPage
-    | ProductsPage
-    | ProductDetailsPage
-    | CartPage
-    | CheckoutStepOnePage
-    | CheckoutStepTwoPage
-    | CheckoutCompletePage;
+import BasicPage from "../pages/BasicPage";
 
 export interface ProductData {
     id: number;
@@ -26,7 +18,7 @@ export interface ProductData {
 }
 
 export interface TestContext {
-    testedPage: TestedPage;
+    testedPage: BasicPage;
     testedUrl: string | undefined;
     initialCartCount: number;
     productData?: ProductData[];

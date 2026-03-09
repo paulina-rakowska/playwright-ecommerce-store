@@ -48,7 +48,11 @@ Given(
     "There is at least one product in the cart",
     async function (this: CustomWorld) {
         const { testedPage, initialCartCount } = getTestContext(this);
-        const productsPage = testedPage as ProductsPage;
+        if (!(testedPage instanceof ProductsPage)) {
+            throw new Error("Expected ProductsPage but got different page");
+        }
+
+        const productsPage = testedPage;
         let productToBeAdded;
         if (initialCartCount === 0) {
             let productsCount = await productsPage.getProductsCount();
@@ -81,7 +85,10 @@ Then(
     "cart item should be visible in cart list with name, description and price",
     async function (this: CustomWorld) {
         const { testedPage } = getTestContext(this);
-        const cartPage = testedPage as CartPage;
+        if (!(testedPage instanceof CartPage)) {
+            throw new Error("Expected CartPage but got different page");
+        }
+        const cartPage = testedPage;
         const names = await cartPage.getCartItemsNames();
         const descriptions = await cartPage.getCartItemsDescs();
         const prices = await cartPage.getCartItemsPrices();
@@ -96,7 +103,10 @@ Then(
     "I should see two buttons to checkout or continue shopping",
     async function (this: CustomWorld) {
         const { testedPage } = getTestContext(this);
-        const checkoutPage = testedPage as CartPage;
+        if (!(testedPage instanceof CartPage)) {
+            throw new Error("Expected CartPage but got different page");
+        }
+        const checkoutPage = testedPage;
         const continueShopping = checkoutPage.continueShoppingButton;
         const checkout = checkoutPage.checkoutButton;
 
@@ -106,9 +116,12 @@ Then(
 );
 When("I click Checkout button", async function (this: CustomWorld) {
     const { testedPage } = getTestContext(this);
-    const cartPage = testedPage as CartPage;
+    if (!(testedPage instanceof CartPage)) {
+        throw new Error("Expected CartPage but got different page");
+    }
+    const cartPage = testedPage;
     await cartPage.checkoutButton.click();
-    await this.page.toHaveURL(checkoutStepOneUrl);
+    await expect(this.page).toHaveURL(checkoutStepOneUrl);
 });
 //Step 1
 Then("I should see the form with 3 inputs", async function (this: CustomWorld) {
@@ -127,7 +140,12 @@ Then(
         string2: string
     ) {
         const { testedPage } = getTestContext(this);
-        const checkoutPage = testedPage as CheckoutStepOnePage;
+        if (!(testedPage instanceof CheckoutStepOnePage)) {
+            throw new Error(
+                "Expected CheckoutStepOnePage but got different page"
+            );
+        }
+        const checkoutPage = testedPage;
         const checkoutInputs = await checkoutPage.checkoutInputs;
         const expectedPlaceholders = [string0, string1, string2];
 
@@ -147,7 +165,12 @@ Then(
         string2: string
     ) {
         const { testedPage } = getTestContext(this);
-        const checkoutPage = testedPage as CheckoutStepOnePage;
+        if (!(testedPage instanceof CheckoutStepOnePage)) {
+            throw new Error(
+                "Expected CheckoutStepOnePage but got different page"
+            );
+        }
+        const checkoutPage = testedPage;
         const checkoutInputs = await checkoutPage.checkoutInputs;
         const inputData = [string0, string1, string2];
 
@@ -161,7 +184,12 @@ Then(
     "I should see two buttons to cancel and continue",
     async function (this: CustomWorld) {
         const { testedPage } = getTestContext(this);
-        const checkoutPage = testedPage as CheckoutStepOnePage;
+        if (!(testedPage instanceof CheckoutStepOnePage)) {
+            throw new Error(
+                "Expected CheckoutStepOnePage but got different page"
+            );
+        }
+        const checkoutPage = testedPage;
 
         const cancelButton = checkoutPage.cancelButton;
         const continueButton = checkoutPage.continueButton;
@@ -172,7 +200,10 @@ Then(
 );
 When("I click Continue", async function (this: CustomWorld) {
     const { testedPage } = getTestContext(this);
-    const checkoutPage = testedPage as CheckoutStepOnePage;
+    if (!(testedPage instanceof CheckoutStepOnePage)) {
+        throw new Error("Expected CheckoutStepOnePage but got different page");
+    }
+    const checkoutPage = testedPage;
     checkoutPage.continueButton.click();
     await this.page.waitForURL(checkoutStepTwoUrl);
 });
@@ -196,7 +227,12 @@ Then(
     "I should be able to see payment information",
     async function (this: CustomWorld) {
         const { testedPage } = getTestContext(this);
-        const checkoutPage = testedPage as CheckoutStepTwoPage;
+        if (!(testedPage instanceof CheckoutStepTwoPage)) {
+            throw new Error(
+                "Expected CheckoutStepTwoPage but got different page"
+            );
+        }
+        const checkoutPage = testedPage;
         const paymentInformationCount =
             await checkoutPage.paymentInformation.count();
 
@@ -208,7 +244,12 @@ Then(
     "I should be able to see shipping information",
     async function (this: CustomWorld) {
         const { testedPage } = getTestContext(this);
-        const checkoutPage = testedPage as CheckoutStepTwoPage;
+        if (!(testedPage instanceof CheckoutStepTwoPage)) {
+            throw new Error(
+                "Expected CheckoutStepTwoPage but got different page"
+            );
+        }
+        const checkoutPage = testedPage;
         const shippingInformationCount =
             await checkoutPage.shippingInformation.count();
 
@@ -220,7 +261,12 @@ Then(
     "I should be able to see Item total price",
     async function (this: CustomWorld) {
         const { testedPage } = getTestContext(this);
-        const checkoutPage = testedPage as CheckoutStepTwoPage;
+        if (!(testedPage instanceof CheckoutStepTwoPage)) {
+            throw new Error(
+                "Expected CheckoutStepTwoPage but got different page"
+            );
+        }
+        const checkoutPage = testedPage;
 
         const { elementCount: itemTotalCount, elementText: itemTotal } =
             await extractPrice(checkoutPage.itemTotal);
@@ -230,7 +276,10 @@ Then(
 );
 Then("I should be able to see Tax price", async function (this: CustomWorld) {
     const { testedPage } = getTestContext(this);
-    const checkoutPage = testedPage as CheckoutStepTwoPage;
+    if (!(testedPage instanceof CheckoutStepTwoPage)) {
+        throw new Error("Expected CheckoutStepTwoPage but got different page");
+    }
+    const checkoutPage = testedPage;
     const { elementCount: taxCount, elementText: tax } = await extractPrice(
         checkoutPage.tax
     );
@@ -239,7 +288,10 @@ Then("I should be able to see Tax price", async function (this: CustomWorld) {
 });
 Then("I should be able to see Price Total", async function (this: CustomWorld) {
     const { testedPage } = getTestContext(this);
-    const checkoutPage = testedPage as CheckoutStepTwoPage;
+    if (!(testedPage instanceof CheckoutStepTwoPage)) {
+        throw new Error("Expected CheckoutStepTwoPage but got different page");
+    }
+    const checkoutPage = testedPage;
     const { elementCount: totalCount, elementText: total } = await extractPrice(
         checkoutPage.priceTotal
     );
@@ -250,7 +302,12 @@ Then(
     "I should see two buttons to cancel and finish",
     async function (this: CustomWorld) {
         const { testedPage } = getTestContext(this);
-        const checkoutPage = testedPage as CheckoutStepTwoPage;
+        if (!(testedPage instanceof CheckoutStepTwoPage)) {
+            throw new Error(
+                "Expected CheckoutStepTwoPage but got different page"
+            );
+        }
+        const checkoutPage = testedPage;
 
         const cancelButton = checkoutPage.cancelButton;
         const finishButton = checkoutPage.finishButton;
@@ -261,7 +318,10 @@ Then(
 );
 When("I click Finish", async function (this: CustomWorld) {
     const { testedPage } = getTestContext(this);
-    const checkoutPage = testedPage as CheckoutStepTwoPage;
+    if (!(testedPage instanceof CheckoutStepTwoPage)) {
+        throw new Error("Expected CheckoutStepTwoPage but got different page");
+    }
+    const checkoutPage = testedPage;
     await checkoutPage.finishButton.click();
     await this.page.waitForLoadState("domcontentloaded");
 });
