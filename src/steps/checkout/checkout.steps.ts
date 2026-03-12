@@ -57,7 +57,7 @@ Given(
         if (initialCartCount === 0) {
             let productsCount = await productsPage.getProductsCount();
             let productIndex =
-                productsCount > 0
+                productsCount > 1
                     ? Math.floor(Math.random() * productsCount)
                     : 0;
             productToBeAdded =
@@ -127,9 +127,10 @@ When("I click Checkout button", async function (this: CustomWorld) {
 Then("I should see the form with 3 inputs", async function (this: CustomWorld) {
     const checkoutPage = new CheckoutStepOnePage(this.page!);
 
-    const inputsLength = (await checkoutPage.checkoutInputs)?.length;
+    const inputs = checkoutPage.checkoutInputs;
+    const count = await inputs.count();
     this.testContext!.testedPage = checkoutPage;
-    expect(inputsLength).toBe(3);
+    expect(count).toBe(3);
 });
 Then(
     "the buttons placeholders should be {string}, {string}, {string}",
@@ -146,12 +147,13 @@ Then(
             );
         }
         const checkoutPage = testedPage;
-        const checkoutInputs = await checkoutPage.checkoutInputs;
+        const checkoutInputs = checkoutPage.checkoutInputs;
         const expectedPlaceholders = [string0, string1, string2];
 
         for (const [index, expected] of expectedPlaceholders.entries()) {
-            const currentPlaceholder =
-                await checkoutInputs[index].getAttribute("placeholder");
+            const currentPlaceholder = await checkoutInputs
+                .nth(index)
+                .getAttribute("placeholder");
             expect(currentPlaceholder).toBe(expected);
         }
     }
@@ -171,12 +173,12 @@ Then(
             );
         }
         const checkoutPage = testedPage;
-        const checkoutInputs = await checkoutPage.checkoutInputs;
+        const checkoutInputs = checkoutPage.checkoutInputs;
         const inputData = [string0, string1, string2];
 
         for (const [index, expected] of inputData.entries()) {
-            await checkoutInputs[index].fill(expected);
-            expect(checkoutInputs[index]).toHaveValue(expected);
+            await checkoutInputs.nth(index).fill(expected);
+            expect(checkoutInputs.nth(index)).toHaveValue(expected);
         }
     }
 );
@@ -339,7 +341,6 @@ Then(
     async function (this: CustomWorld, string1: string, string2: string) {
         const { testedPage } = getTestContext(this);
         const checkoutPage = testedPage as CheckoutCompletePage;
-        const completeText = await checkoutPage.completeText.innerText();
         await expect(checkoutPage.completeHeader).toHaveText(string1);
         await expect(checkoutPage.completeText).toHaveText(string2);
         await expect(checkoutPage.backHomeButton).toBeVisible();
