@@ -226,6 +226,11 @@ Playwright-first → wrap in Cucumber later ❌ (less ideal if doing BDD)
 
 For your project: since the job description emphasizes Cucumber + BDD, you should start with feature files.
 
+Create .env file:
+
+SAUCE_USERNAME=standard_user
+SAUCE_PASSWORD=secret_sauce
+
 Cucumber:
 Run specific feature:
 
